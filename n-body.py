@@ -124,8 +124,7 @@ class Potential:
 
         return self.system
 
-from decimal import *
-import math
+
 lenTime=3600.0*24*30*2  #sec (2 meses)
 lenTime=60*60*2 #  en segundos (periodo orbital de Mimas: 23 horas)
 dt=0.50      #sec    
@@ -175,38 +174,7 @@ for t in range(1,n_steps):
 	#if t==1000000:
 	#	break
 
-#B.setdt(dt)
-#x=[]
-#y=[]
-#v=[]
-#a=[]
-#x.append(0.0)
-##y.append(B.getPosition()[0])
-#y.append(B.getPosition())
-#v.append(B.getVelocity()[0])
-#
-#print(B.getVelocity()[0])
-#
-#a.append(0.0)
-#v1=B.getVelocity()[0]
-##lastX = B.getPosition()[0]
-#
-##for t in range(1,100):
-##    lastX = B.getPosition()[0]
-##    lastV = v1
-##    B.integrate(A)
-##    print(B.getPosition())
-##    x.append(float(t)*dt)
-##    y.append(B.getPosition()[0])
-##    v1=(B.getPosition()[0]-lastX)/B.dt
-##    print(v1)
-##    v.append(v1)
-##    a.append((v1-lastV)/B.dt)
-#
-#for t in range(1,100):
-#    B.integrate(A)
-#    x.append(float(t)*dt)
-#    y.append(B.getPosition())
+
 
 fig = plt.figure()
 
@@ -222,36 +190,7 @@ for particle in particles:
     i=i+1
 
 
-# stack the plots
-#lns = []
-#for i in range(len(t)):
-#    ln1, = ax.plot(y0[:i], y1[:i], z1[:i], 'o-', color='steelblue')
-#    ln2, = ax.plot(x2[:i], y2[:i], z2[:i], 'o-', color='darkorange')
-#    lns.append([ln1, ln2])
 
-#line_ani = animation.ArtistAnimation(fig, lns, interval=100, blit=True)
-
-    
-#for point in y:
-#    ax.scatter(point[0], point[1], point[2], marker='o')
-
-#pointA=A.getPosition()
-#ax.scatter(pointA[0], pointA[1], pointA[2], marker='o')
-
-    
-#fig, ax = plt.subplots(3)    
-#ax[0].plot(x,y)
-#ax[0].set(xlabel='time [sec]', ylabel='distance [km]',
-#           title="n-body")
-#ax[0].grid()
-#
-#ax[1].plot(x,v)
-#ax[1].set(xlabel='time [sec]', ylabel='velocity [km/s]')
-#ax[1].grid()
-#
-#ax[2].plot(x,a)
-#ax[2].set(xlabel='time [sec]', ylabel='acceleration [km/s^2]')
-#ax[2].grid()
 
 
 
