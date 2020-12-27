@@ -141,7 +141,18 @@ VX=-6.722716075791823E-03*1.496e+11
 VY=-3.906534056535731E-03*1.496e+11 
 VZ= 2.741552242697911E-03*1.496e+11
 '''
+
+import json
+lunas = ["Mimas", "Encelados", "Tethys", "Dione", "Rhea", "Titan", "Iapetus"]
+with open('lunas.json') as json_file:
+    luna = json.load(json_file)
+
 # Todas las cantidades deben estar en unidades de metros y segundos
+for l in lunas:
+    for i in range(3):
+        luna[l][0][i] *= 1000
+        luna[l][1][i] *= 1000
+'''        
 X =-1.097514706739005E+08
 Y = 1.350832531554601E+08
 Z =-6.582332690389031E+07
@@ -149,6 +160,8 @@ VX=-1.164009271133237E+04
 VY=-6.763995100402531E+03
 VZ= 4.746879374078901E+03
 mimas = Particle([X,Y,Z],[VX,VY,VZ],3.75E+19)
+'''
+mimas = Particle(luna['Mimas'][0],luna['Mimas'][1],luna['Mimas'][2])
 #mimas = Particle([X,Y,Z],[0,0,0],3.75E+19)
 n_steps = int(lenTime/dt)
 
