@@ -20,6 +20,7 @@ import math
 import matplotlib
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
+plt.style.use('dark_background')
 
 
 G=6.674e-11         #m^3kg^-1s^-2
@@ -126,7 +127,7 @@ class Potential:
 
 
 lenTime=3600.0*24*30*2  #sec (2 meses)
-lenTime=60*60*2 #  en segundos (periodo orbital de Mimas: 23 horas)
+lenTime=60*60*5 #  en segundos (periodo orbital de Mimas: 23 horas)
 dt=0.50      #sec    
 
 
@@ -185,11 +186,15 @@ i=0
 c=['g','r','b','g','r','b','g','r','b','g','r','b']
 for particle in particles:
     time, trajectory = particle.getTrajectory()
-    for x, y in zip(time,trajectory):
-        ax.scatter(y[0], y[1], y[2], marker='o',c=c[i])
-        #ax.scatter(y[0], y[1], y[2], c=c[i])
+    if round(sum(particle.v)) == 0:
+        for x, y in zip(time,trajectory):
+            ax.scatter(y[0], y[1], y[2], s=200, marker='o', c='palegoldenrod')
+            #ax.scatter(y[0], y[1], y[2], c=c[i])
+    else:
+        for x, y in zip(time,trajectory):
+            ax.scatter(y[0], y[1], y[2], marker='o',c=c[i])
+            #ax.scatter(y[0], y[1], y[2], c=c[i])
     i=i+1
-
 
 
 
