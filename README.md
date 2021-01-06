@@ -21,42 +21,45 @@ Por su parte, Saturno tiene 82 lunas confirmadas con diámetro que varía desde 
 
 Usaremos el sistema internacional de unidades. (Creo que esto puede ir más en la metodología)
  
-Fórmulas de Newton e integración de posiciones
-Segunda ley de Newton
-F = ma
-Ley de la gravitación universal
-F = GMm/r^2
+### Fórmulas de Newton e integración de posiciones 
+Las fórmulas están escritas en negro por lo cual se recomienda usar fondo blanco.
+#### Segunda ley de Newton   
+<img src="https://render.githubusercontent.com/render/math?math=F = ma">     
+
+#### Ley de la gravitación universal
+<img src="https://render.githubusercontent.com/render/math?math=F = \frac{GMm}{r^2}">    
+
        
 La diferencia es que como trabajamos en un campo vectorial de 3 dimensiones, tenemos que agregar el vector u que nos va a indicar la dirección de las fuerzas y F ahora es un vector también. Adicionalmente dividiremos entre r^3 en lugar de r^2.       
-N-cuerpos
+#### N-cuerpos
 La ley de la gravitación universal describe la fuerza entre 2 cuerpos, para generalizarla a n-cuerpos, podemos sumar todas las fuerzas de un cuerpo con los demás y hacerle así para cada cuerpo.           
 La suma queda así:      
-F = GM*suma((mi/ri^3)*ui)      
+<img src="https://render.githubusercontent.com/render/math?math=F = GM  \sum_{i} (\frac{m_i}{r_{i}^3})u_i ">     
  
-Sustituimos F = Ma:     
-a = G*suma((mi/ri^3)*ui)       
+Sustituimos <img src="https://render.githubusercontent.com/render/math?math=F = Ma">:     
+<img src="https://render.githubusercontent.com/render/math?math=a = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i">      
 
-Sabemos que a = dv/dt, entonces:     
-dv/dt = G*suma((mi/ri^3)*ui)      
+Sabemos que <img src="https://render.githubusercontent.com/render/math?math=a = \frac{dv}{dt}">, entonces:     
+<img src="https://render.githubusercontent.com/render/math?math=\frac{dv}{dt} = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i">         
 
 Integramos y nos queda la velocidad:      
-v = integral_(G*suma((mi/ri^3)*ui))_dt       
+<img src="https://render.githubusercontent.com/render/math?math=v = G  \int \sum_{i} (\frac{m_i}{r_{i}^3})u_i \,dt">         
 
 Como nada depende del tiempo, entonces:    
-v = (G*suma((mi/ri^3)*ui) integral_dt         
-v = (G*suma((mi/ri^3)*ui) * (t1-t0)     
-        
+<img src="https://render.githubusercontent.com/render/math?math=v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i \int \,dt">           
+<img src="https://render.githubusercontent.com/render/math?math=v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i (t1-t0)">           
+<img src="https://render.githubusercontent.com/render/math?math=v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i dt">        
 Entonces ya sabemos cuál es la velocidad.      
 
-Sabemos también que v = dx/dt, sustituimos:      
-dx/dt = v       
+Sabemos también que <img src="https://render.githubusercontent.com/render/math?math=v = \frac{dx}{dt}">, sustituimos:      
+<img src="https://render.githubusercontent.com/render/math?math=\frac{dx}{dt} = v">       
 Integramos:     
-x = integral_(v)_dt       
+<img src="https://render.githubusercontent.com/render/math?math=x = \int v \,dt">       
 
 Ahora sacamos a v de la integral aunque sí dependa del tiempo, lo que suponemos es que los saltos de tiempo son tan pequeños que tiene un efecto insignificante para los fines del modelo, entonces:        
-x = v*integral_dt       
-x = v * (t1-t0)
-x = v*dt        
+<img src="https://render.githubusercontent.com/render/math?math=x = v \int \,dt">      
+<img src="https://render.githubusercontent.com/render/math?math=x = v  (t1-t0)">
+<img src="https://render.githubusercontent.com/render/math?math=x = v dt">        
 La x calculada es el cambio de posición de una partícula después de un determinado dt. Entonces para calcular la posición nueva de la partícula sólo hay que sumarle el cambio calculado a la vieja posición.
 
 
