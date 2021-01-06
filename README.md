@@ -1,15 +1,19 @@
-# Proyect-Modelado
 # Lunas de Saturno
-## Mimas y Saturno
+Modelo de n-cuerpos de Saturno y algunas de sus lunas.
+## Autores
+## Licencia
+## Requerimientos
+## Fuente de datos
+### Ejemplo: Mimas y Saturno
 En la siguiente imagen se muestran las condiciones iniciales (posición y velocidad) de Mimas con respecto a Saturno. Saturno, por ser el marco de referencia es el orígen (la posición 0,0,0) en el espacio y no tiene velocidades iniciales (0,0,0). Se pueden hacer más consultas de datos en Horizons de la NASA [aquí](https://ssd.jpl.nasa.gov/horizons.cgi).         
 Todo debe de estar en m, kg, seg.        
 
 ![image](https://user-images.githubusercontent.com/28678081/103158099-d67f0780-477f-11eb-9f8e-caebb71069b7.png)
 
+## Instrucciones de instalación y ejecución
 
 
 
-# Reporte
 ## Introducción (marco teórico)
 El problema de los n-cuerpos fue un modelo matemático sugerido por Isaac Newton en 1687 para poder modelar el comportamiento de nuestro sistema planetario, aunque esta técnica ha sido de gran ayuda en el modelizado de cualquier órbita planetaria. El modelizado de órbitas se basa en crear modelos matemáticos para simular el movimiento de un cuerpo masivo a medida que se mueve en órbita alrededor de otro cuerpo masivo debido a la gravedad.
 
@@ -68,3 +72,9 @@ Establecer un precedente de una modelación específica de las lunas de Saturno 
 - Encontrar los parámetros óptimos. Entender qué efecto tienen diferentes pasos de integración en diferentes masas de cuerpos celestes a diferentes distancias y con diferentes velocidades
 - Optimizar el código para que sea más rápido y así poder incluir más cuerpos celestes al mismo tiempo
 
+## Metodología
+## Implementación
+## Pruebas
+## Resultados
+## Conclusiones
+## Bibliografía
