@@ -1,7 +1,7 @@
 # Lunas de Saturno
 Modelo de n-cuerpos de Saturno y algunas de sus lunas.
 ## Autores
-Víctor de la Luz
+Víctor de la Luz     
 Rafa     
 Elena      
 Javier Navarro - <javojavojavojavo@gmail.com>
