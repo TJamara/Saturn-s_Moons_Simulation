@@ -22,8 +22,8 @@ En la siguiente imagen se muestran las condiciones iniciales (posición y veloci
 
 ![image](https://user-images.githubusercontent.com/28678081/103158099-d67f0780-477f-11eb-9f8e-caebb71069b7.png)
 
-## Instrucciones de instalación y ejecución
-
+## Ejecución
+Clonar el git y correr n-body.py
 
 
 ## Introducción (marco teórico)
