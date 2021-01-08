@@ -124,11 +124,15 @@ class Potential:
             particle.updatePosition(time,save)
 
         return self.system
-
-
+    
 lenTime=3600.0*24*30*2  #sec (2 meses)
-lenTime=60*60*5 #  en segundos (periodo orbital de Mimas: 23 horas)
-dt=0.50      #sec    
+#lenTime=60*60*10 #  en segundos (periodo orbital de Mimas: 23 horas)
+#lenTime=100
+dt=1    #sec
+
+# 1 segundo da los mejores resultados. Una menor dt provoca inestabilidad del sistema, quiza por problemas numericos, colapsando los cuerpos entre si
+
+# Mas de 1 segundo tambien provoca problemas al verse disminuida la exactitud del modelo
 
 
 # Saturno es el marco de referencia del sistema, por eso está en el origen y no tiene velocidades
@@ -161,29 +165,31 @@ VY=-6.763995100402531E+03
 VZ= 4.746879374078901E+03
 mimas = Particle([X,Y,Z],[VX,VY,VZ],3.75E+19)
 '''
-mimas = Particle(luna['Mimas'][0],luna['Mimas'][1],luna['Mimas'][2])
+particles = [saturn]
+for l in lunas:
+    particles.append(Particle(*luna[l])) # Pasa cada elemento de la lista como un parametro
+
+#mimas = Particle(*luna['Mimas'])
 #mimas = Particle([X,Y,Z],[0,0,0],3.75E+19)
 n_steps = int(lenTime/dt)
 
-particles = [saturn,mimas]
-
-twoBody = Potential(particles,dt)
+nBody = Potential(particles,dt)
 
 x=[]
 y=[]
 
 
-skip=0
+skip=0        # Mas eficiente
 save=False
 #n_steps = 3
 
 print(str(1)+'/'+str(n_steps))
-for t in range(1,n_steps):
-	print(str(t+1)+'/'+str(n_steps))
-	if skip == 1000:
+for time in range(1,n_steps):
+	print(str(time+1)+'/'+str(n_steps))
+	if skip == 5000:
 	    skip=0
 	    save=True
-	system = twoBody.integrate(float(t)*dt,save)
+	system = nBody.integrate(float(time)*dt,save)
 	save=False
 	skip += 1
 	#if t==1000000:
@@ -198,20 +204,16 @@ ax = fig.add_subplot(111, projection='3d')
 i=0
 c=['g','r','b','g','r','b','g','r','b','g','r','b']
 for particle in particles:
-    time, trajectory = particle.getTrajectory()
+    t, trajectory = particle.getTrajectory()
     if round(sum(particle.v)) == 0:
-        for x, y in zip(time,trajectory):
-            ax.scatter(y[0], y[1], y[2], s=200, marker='o', c='palegoldenrod')
+        for x, y in zip(t,trajectory):
+            ax.scatter(y[0], y[1], y[2], s=20, marker='o', c='palegoldenrod')
             #ax.scatter(y[0], y[1], y[2], c=c[i])
     else:
-        for x, y in zip(time,trajectory):
-            ax.scatter(y[0], y[1], y[2], marker='o',c=c[i])
+        for x, y in zip(t,trajectory):
+            ax.scatter(y[0], y[1], y[2], s=5, marker='o',c=c[i])
             #ax.scatter(y[0], y[1], y[2], c=c[i])
     i=i+1
-
-
-
-
 
 plt.show()
 
