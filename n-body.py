@@ -27,11 +27,11 @@ G=6.674e-11         #m^3kg^-1s^-2
 
 class Particle:
     
-    def __init__(self, p, v, m, dt=1):
+    def __init__(self, p, v, m):
         self.p = p #position
         self.v = v #velocity
         self.m = m #mass
-        self.dt = dt
+        #self.dt = dt
         self.trajectory = [p]
         self.time = [0.0]
 
@@ -77,13 +77,13 @@ class Particle:
         return k    
 
     #def integrate(self,dt,p1,m1):
-    def computeV(self,B):
+    def computeV(self,B,dt):
         r = self.computeR(B.p)
         u = self.computeU(B.p)
 
-        Vx=(G*B.m*self.dt/(r**3))*u[0]
-        Vy=(G*B.m*self.dt/(r**3))*u[1]
-        Vz=(G*B.m*self.dt/(r**3))*u[2]
+        Vx=(G*B.m*dt/(r**3))*u[0]
+        Vy=(G*B.m*dt/(r**3))*u[1]
+        Vz=(G*B.m*dt/(r**3))*u[2]
         #print(u)
         #print(r)
         #print((G*B.m/(r**3))*u[0],(G*B.m/(r**3))*u[1],(G*B.m/(r**3))*u[2])         
@@ -97,7 +97,7 @@ class Particle:
         self.v[2] += v[2]
         
     #def integrate(self,dt,p1,m1):
-    def updatePosition(self,time,save):        
+    def updatePosition(self,dt,time,save):        
         self.p = [self.p[0]+ (self.v[0]) *dt,self.p[1]+ (self.v[1])*dt,self.p[2]+ (self.v[2])*dt]
         if save:
             self.time.append(time)
@@ -118,17 +118,17 @@ class Potential:
         for particle in self.system:
             for other in self.system:
                 if other != particle:
-                    velocity = particle.computeV(other)
+                    velocity = particle.computeV(other, self.dt)
                     particle.updateV(velocity)
         for particle in self.system:
-            particle.updatePosition(time,save)
+            particle.updatePosition(self.dt,time,save)
 
         return self.system
     
 lenTime=3600.0*24*30*2  #sec (2 meses)
-#lenTime=60*60*10 #  en segundos (periodo orbital de Mimas: 23 horas)
+#lenTime=60*60*23 #  en segundos (periodo orbital de Mimas: 23 horas)
 #lenTime=100
-dt=1    #sec
+dt=2    #sec
 
 # 1 segundo da los mejores resultados. Una menor dt provoca inestabilidad del sistema, quiza por problemas numericos, colapsando los cuerpos entre si
 
