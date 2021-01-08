@@ -22,8 +22,8 @@ En la siguiente imagen se muestran las condiciones iniciales (posición y veloci
 
 ![image](https://user-images.githubusercontent.com/28678081/103158099-d67f0780-477f-11eb-9f8e-caebb71069b7.png)
 
-## Instrucciones de instalación y ejecución
-
+## Ejecución
+Clonar el git y correr n-body.py
 
 
 ## Introducción (marco teórico)
@@ -99,3 +99,5 @@ Establecer un precedente de una modelación específica de las lunas de Saturno 
 ## Bibliografía
 - Victor de la Luz, 2021 n-body     
 https://github.com/itztli/n-body
+- JPL. 2020. JPL Solar System Dynamics HORIZONS Web-Interface CA, USA. Dataset accessed    
+[2020-12-24] at https://ssd.jpl.nasa.gov/horizons.cgi
