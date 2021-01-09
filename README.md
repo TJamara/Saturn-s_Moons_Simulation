@@ -1,9 +1,10 @@
 # Lunas de Saturno
-Modelo de n-cuerpos de Saturno y algunas de sus lunas.
+Modelo de n-cuerpos de Saturno y algunas de sus lunas.     
+Ésta es una versión nueva del modelo que parte de [éste](https://github.com/itztli/n-body) repositorio.
 ## Autores
-Víctor de la Luz     
-Rafa     
-Elena      
+Víctor de la Luz        
+Rafa Pérez - <>    
+Elena Bedolla - <>      
 Javier Navarro - <javojavojavojavo@gmail.com>
 ## Licencia
 GNU General Public License v3.0
@@ -91,8 +92,39 @@ Establecer un precedente de una modelación específica de las lunas de Saturno 
 - Encontrar los parámetros óptimos. Entender qué efecto tienen diferentes pasos de integración en diferentes masas de cuerpos celestes a diferentes distancias y con diferentes velocidades
 - Optimizar el código para que sea más rápido y así poder incluir más cuerpos celestes al mismo tiempo
 
-## Metodología
-## Implementación
+## Metodología e implementación 
+### Unidades
+- Distancia: metros
+- Masa: kilogramos
+- Tiempo: segundos      
+
+G está definida como variable global considerando las unidades anteriores.
+### Clases y métodos
+#### Particle
+La clase Particle nos sirve para crear objetos partículas, cada uno con su respectiva posición, velocidad, masa, trajectoria y tiempo (inicializado en 0).
+##### Métodos de Particle
+- Están definidos getters para: posición, velocidad, energía cinética y para la trayectoria.    
+- Está definido un setter de dt. \*\*\*Creo que no usamos este método     
+- computeR: Regresa distancia entre 2 vectores. 
+- computeU: Regresa la resta entre 2 vectores (la dirección de 'R').
+- integrate: Actualiza la posición con el dt especificado. \*\*\*Creo que este método tampoco lo usamos, hace el trabajo de computeV, updateV y updatePosition, creo que no hace falta
+- computeV: Calcula la velocidad de la partícula tomando en cuenta la posición y masa de otro único cuerpo.
+- updateV: Suma una nueva velocidad (calculada en computeV) a la velocidad de la partícula actualizándola.
+- updatePosition: Actualiza la posición sumándole la velocidad multiplicada por la misma posición. Si la variable save es 'True', entonces guarda la posición (en trajectoria) para su futura graficación.
+
+#### Potential
+La clase Potential pone a funcionar a todos los objetos partículas. Se inicializa con una lista de objetos Particle, en este caso Saturno y sus lunas, y con el dt.
+##### Método integrate
+Tiene 2 tareas:    
+La primera consiste en iterar las partículas todas contra todas y actualizar sus velocidades tomando en cuenta cada interacción. La segunda tarea consiste en actualizar la posición de todas las partículas usando las velocidades previamente actualizadas.
+### Definiendo partículas y parámetros
+Para iterar el modelo debemos definir primero cuántas veces se va a iterar y de que tamaño va a ser el dt en cada iteración. También tenemos que llevar la cuenta del tiempo transcurrido para guardar la trayectoria que incluye el tiempo y la posición. Además tenemos que crear objetos partículas (Saturno y sus lunas en este caso), cuyas condiciones iniciales del 24 de diciembre de 2020 las guardamos en lunas.json.      
+
+Ahora sí podemos iterar.
+### Graficar
+Usando la lista de posiciones (trayectory) de cada partícula, graficamos cada una con un color diferente y Saturno con un radio mayor al de sus lunas.
+### Animar 
+\*\*\*pendiente?\*\*\*
 ## Pruebas
 ## Resultados
 ## Conclusiones
