@@ -1,6 +1,6 @@
 # Lunas de Saturno
 Modelo de n-cuerpos de Saturno y algunas de sus lunas.     
-Ésta es una versión nueva del modelo que parte de [éste](https://github.com/itztli/n-body) repositorio.
+Ésta es una versión nueva del modelo que parte de [este](https://github.com/itztli/n-body) repositorio.
 ## Autores
 Víctor de la Luz        
 Rafa Pérez - <>    
@@ -114,7 +114,7 @@ La clase Particle nos sirve para crear objetos partículas, cada uno con su resp
 
 #### Potential
 La clase Potential pone a funcionar a todos los objetos partículas. Se inicializa con una lista de objetos Particle, en este caso Saturno y sus lunas, y con el dt.
-##### Método integrate
+##### Método integrante
 Tiene 2 tareas:    
 La primera consiste en iterar las partículas todas contra todas y actualizar sus velocidades tomando en cuenta cada interacción. La segunda tarea consiste en actualizar la posición de todas las partículas usando las velocidades previamente actualizadas.
 ### Definiendo partículas y parámetros
