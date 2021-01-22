@@ -1,10 +1,9 @@
 # Lunas de Saturno
 Modelo de n-cuerpos de Saturno y algunas de sus lunas.     
-Ésta es una versión nueva del modelo que parte de [este](https://github.com/itztli/n-body) repositorio.
+Ésta es una versión nueva del modelo que parte de [este repositorio](https://github.com/itztli/n-body) cuyo autor es [itztli](https://github.com/itztli).
 ## Autores
-Víctor de la Luz        
-Rafa Pérez - <>    
-Elena Bedolla - <>      
+Rafael Pérez - <tinoco21.30@gmail.com>    
+Elena Bedolla - <maria.elena.bedolla.zamudio@gmail.com>      
 Javier Navarro - <javojavojavojavo@gmail.com>
 ## Licencia
 GNU General Public License v3.0
