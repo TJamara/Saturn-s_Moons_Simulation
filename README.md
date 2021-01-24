@@ -125,12 +125,13 @@ Usando la lista de posiciones (trayectory) de cada partícula, graficamos cada u
 ### Animar 
 \*\*\*pendiente?\*\*\*
 ## Pruebas
-Con algunas horas de modelado (minutos en ejecución), nos dimos cuenta que con dt=1 sí converge.
-![p1](https://user-images.githubusercontent.com/28678081/105621390-8326c600-5dcc-11eb-8fb0-f505331975d0.jpg)
-## Resultados
 ### 1: 4 cuerpos, dt= 0.5 y 3 meses de modelado (minutos en ejecución)
 El plot tardó aproximadamente 4 horas, la cantidad de puntos es tan elevada que parecen líneas por tan juntos que están los puntos.
 ![r1_2](https://user-images.githubusercontent.com/28678081/105621256-43131380-5dcb-11eb-9304-182e1a0e16b1.jpg)
+### 2: Con algunas horas de modelado (minutos en ejecución), nos dimos cuenta que con dt=1 sí converge.
+![p1](https://user-images.githubusercontent.com/28678081/105621390-8326c600-5dcc-11eb-8fb0-f505331975d0.jpg)
+## Resultados
+
 ## Conclusiones
 Pudimos experimentar cómo rápidamente aumentan los recursos para ejecutar el código y visualizar el plot en medida en que aumentamos el número de partículas y el tiempo a modelar, por eso la importancia de elegír el dt óptimo para reducir las operaciones en órdenes de magnitud.
 ## Bibliografía
