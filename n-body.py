@@ -179,6 +179,10 @@ x=[]
 y=[]
 
 
+puntitos_por_particula = 50
+sk_val = int(n_steps/puntitos_por_particula) # Poner sk_val en el ciclo de abajo en 'if skip == sk_val'
+
+
 skip=0        # Mas eficiente
 save=False
 #n_steps = 3
