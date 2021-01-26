@@ -253,7 +253,7 @@ for i, row in mimas_data.iterrows():
         real_pos = np.array([row.X, row.Y, row.Z], dtype=np.float32)*1000 # Transformando a metros
         errors.append(np.sqrt(np.sum((real_pos - position)**2)))
     
-plt.plot(range(mimas_data.values.shape[0]-1), errors)
+plt.plot(range(1, mimas_data.values.shape[0]), errors)
     
 # Tipicamente se obtiene que el error o distancia con la posicion real diverge de manerea lineaal respecto al tiempo. Probablemente tenga que ver con la simplicidad del modelo ya que el sistema de Saturno y sus satelites e incluso anillo es mucho mas complejo. Pero aun asi, despues de 30 dias, Mimas solo se separa 200,000 km aproximadamente, lo cual no podria no ser tanto para objetos astronomicos.
 

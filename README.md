@@ -122,15 +122,28 @@ Para iterar el modelo debemos definir primero cuántas veces se va a iterar y de
 Ahora sí podemos iterar.
 ### Graficar
 Usando la lista de posiciones (trayectory) de cada partícula, graficamos cada una con un color diferente y Saturno con un radio mayor al de sus lunas.
-### Animar 
-\*\*\*pendiente?\*\*\*
+### Graficación de divergencia
+Para graficar la divergencia, comparamos los cálculos arrojados por nuestro modelo contra los datos de las observaciones reales de Horizons. Para ello excribimos en mimas_data.txt las posiciónes diarias de Mimas en un intervalo de 30 días. La función read_horizon() lee esos datos para posteriormete compararlos con los generados por el modelo.
+
 ## Pruebas
 ### 1: 4 cuerpos, dt= 0.5 y 3 meses de modelado (minutos en ejecución)
-El plot tardó aproximadamente 4 horas, la cantidad de puntos es tan elevada que parecen líneas por tan juntos que están los puntos.
+El plot tardó aproximadamente 4 horas. Nótese que estamos graficando puntos, pero están tan juntos que parecen líneas.           
 ![r1_2](https://user-images.githubusercontent.com/28678081/105621256-43131380-5dcb-11eb-9304-182e1a0e16b1.jpg)
 ### 2: Con algunas horas de modelado (minutos en ejecución), nos dimos cuenta que con dt=1 sí converge.
 ![p1](https://user-images.githubusercontent.com/28678081/105621390-8326c600-5dcc-11eb-8fb0-f505331975d0.jpg)
 ## Resultados
+Después de varias pruebas, encontramos que dt = 2 nos dió los resultados más rápidos sin sacrificar la convergencia. En el sistema modelado están uncluídos 8 cuerpos: Saturno, Mimas, Encelados, Tethys, Dione, Rhea, Titan y Iapetus. El intervalo de tiempo modelado es de 30 días: del 24 de diciembre de 2020 al 23 de enero de 2021. El tiempo total de ejecución fue de aproximadamente 10 minutos.
+
+### Gráfica de divergencia (usando a Mimas)
+Muestra el error acumulado en metros en el eje y, y los días del mes en el eje x. El error (divergencia) se calcula con las mediciones reales de posición de Horizons de cada mes (30 mediciones) menos las  generadas con éste modelo.  El cálculo del error se hizo usando únicamente las posiciones de Mimas.         
+![Error](https://user-images.githubusercontent.com/28678081/105878453-b03ec880-5fc6-11eb-8815-dc04cfd4ea82.png)
+Típicamente se obtiene que el error o distancia con la posición real diverge de manera lineal respecto al tiempo. Probablemente tenga que ver con la simplicidad del modelo ya que el sistema de Saturno y sus satélites e incluso anillos es mucho más complejo. Pero aun así, despues de 30 dias, Mimas solo se separa 200,000 km aproximadamente, lo cual no podría no ser tanto para objetos astronómicos, el tiempo de modelado y el uso de números sin precisión arbitraria.
+### Visualización de órbitas
+
+![R1](https://user-images.githubusercontent.com/28678081/105872492-1a07a400-5fc0-11eb-872f-e9481ec02e9f.png)       
+
+![R3](https://user-images.githubusercontent.com/28678081/105876213-5d641180-5fc4-11eb-8ba0-4b098d81f379.png)
+En ésta imagen se observa que las órbitas de las Lunas de Saturno no están todas en el mismo plano.
 
 ## Conclusiones
 Pudimos experimentar cómo rápidamente aumentan los recursos para ejecutar el código y visualizar el plot en medida en que aumentamos el número de partículas y el tiempo a modelar, por eso la importancia de elegír el dt óptimo para reducir las operaciones en órdenes de magnitud.
