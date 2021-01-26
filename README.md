@@ -142,7 +142,7 @@ Típicamente se obtiene que el error o distancia con la posición real diverge d
 
 ![R1](https://user-images.githubusercontent.com/28678081/105872492-1a07a400-5fc0-11eb-872f-e9481ec02e9f.png)       
 
-![R3](https://user-images.githubusercontent.com/28678081/105876213-5d641180-5fc4-11eb-8ba0-4b098d81f379.png)
+![R3](https://user-images.githubusercontent.com/28678081/105876213-5d641180-5fc4-11eb-8ba0-4b098d81f379.png)           
 En ésta imagen se observa que las órbitas de las Lunas de Saturno no están todas en el mismo plano.
 
 ## Conclusiones
