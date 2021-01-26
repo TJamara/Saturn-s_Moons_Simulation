@@ -19,6 +19,10 @@
 import math
 import matplotlib
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import re
+from datetime import datetime
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
 plt.style.use('dark_background')
 
@@ -125,7 +129,40 @@ class Potential:
 
         return self.system
     
-lenTime=3600.0*24*30*2  #sec (2 meses)
+    
+def read_horizon(fname):
+    # Usar unicamente con datos de los meses diciembre y enero
+    i = 0
+    dic = {'datetime' : [], 'X' : [], 'Y': [], 'Z': [], 'VX' : [], 'VY' : [], 'VZ' : []}
+    with open(fname) as f:
+        while True:
+            text = f.readline()
+            if not text:
+                break
+            line = i%4
+            if line == 0:
+                comps = text.split(' ')
+                UTCdatetime = 'T'.join(comps[3:5])[:-5]
+                UTCdatetime = UTCdatetime.replace('Dec', '12')
+                UTCdatetime = UTCdatetime.replace('Jan', '01')
+                dic['datetime'].append(UTCdatetime)
+            elif line == 1:
+                comps = text.split('=')
+                dic['X'].append(re.findall('-?\d\.\d+E[\+-]\d+', comps[1])[0])
+                dic['Y'].append(re.findall('-?\d\.\d+E[\+-]\d+', comps[2])[0])
+                dic['Z'].append(re.findall('-?\d\.\d+E[\+-]\d+', comps[-1])[0])
+            elif line == 2:
+                comps = text.split('=')
+                dic['VX'].append(re.findall('-?\d\.\d+E[\+-]\d+', comps[1])[0])
+                dic['VY'].append(re.findall('-?\d\.\d+E[\+-]\d+', comps[2])[0])
+                dic['VZ'].append(re.findall('-?\d\.\d+E[\+-]\d+', comps[-1])[0])
+            i+=1
+    #print(dic)
+    return pd.DataFrame(dic)
+            
+    
+    
+lenTime=3600.0*24*30  #sec 30 dias desde el 24 de diciembre hasta el 23 de enero, el rango de los datos descargados de la NASA
 #lenTime=60*60*23 #  en segundos (periodo orbital de Mimas: 23 horas)
 #lenTime=100
 dt=2    #sec
@@ -135,7 +172,7 @@ dt=2    #sec
 # Mas de 1 segundo tambien provoca problemas al verse disminuida la exactitud del modelo
 
 
-# Saturno es el marco de referencia del sistema, por eso está en el origen y no tiene velocidades
+# Saturno es el marco de referencia del sistema, por eso esta en el origen y no tiene velocidades
 saturn = Particle([0,0,0],[0,0,0],5.6834E+26)
 '''
 X =-7.336432675167782E-04*1.496e+11 
@@ -159,7 +196,7 @@ for l in lunas:
 '''        
 X =-1.097514706739005E+08
 Y = 1.350832531554601E+08
-Z =-6.582332690389031E+07
+Z =-6.5823326ml90389031E+07
 VX=-1.164009271133237E+04
 VY=-6.763995100402531E+03
 VZ= 4.746879374078901E+03
@@ -179,18 +216,22 @@ x=[]
 y=[]
 
 
-puntitos_por_particula = 50
+puntitos_por_particula = 50 # Mientras mas alto, menos graficaciones
 sk_val = int(n_steps/puntitos_por_particula) # Poner sk_val en el ciclo de abajo en 'if skip == sk_val'
 
+skip_val = 1800 # Debe ser una cantidad tal que su multiplicacion con el dt determinado divida al intervalo de tiempo de los datos de la NASA
 
-skip=0        # Mas eficiente
+# En este caso, al ser el intervalo de tiempo de los datos de la NASA 1 dia u 86400 segundos, se necesita que skip_val * dt divida a 86400, como lo es la combinacion dt=2 y skip_val=1800 (3600 divide a 86400)
+
+
+skip=1        # Porque se empieza en el primer step
 save=False
 #n_steps = 3
 
 print(str(1)+'/'+str(n_steps))
-for time in range(1,n_steps):
+for time in range(1, n_steps+1): # Tiene que calcular desde el paso 0 hasta el paso n_steps (colocando n_steps+1) para calcular el intervalo de tiempo lenTime completo
 	print(str(time+1)+'/'+str(n_steps))
-	if skip == 5000:
+	if skip == skip_val:
 	    skip=0
 	    save=True
 	system = nBody.integrate(float(time)*dt,save)
@@ -199,7 +240,25 @@ for time in range(1,n_steps):
 	#if t==1000000:
 	#	break
 
+# Error
+mimas_data = read_horizon('mimas_data.txt')
+t, trajectory = particles[1].getTrajectory() # tiempos y trayectoria de Mimas
+#print(mimas_data.values)
+errors = []
+for i, row in mimas_data.iterrows():
+    if i!= 0:
+        seconds = (datetime.fromisoformat(row.datetime) - datetime.fromisoformat(mimas_data.values[0][0])).total_seconds()
+        t_ix = [j for j, item in enumerate(t) if item == seconds]
+        position = np.array(trajectory[t_ix[0]], dtype=np.float32)
+        real_pos = np.array([row.X, row.Y, row.Z], dtype=np.float32)*1000 # Transformando a metros
+        errors.append(np.sqrt(np.sum((real_pos - position)**2)))
+    
+plt.plot(range(mimas_data.values.shape[0]-1), errors)
+    
+# Tipicamente se obtiene que el error o distancia con la posicion real diverge de manerea lineaal respecto al tiempo. Probablemente tenga que ver con la simplicidad del modelo ya que el sistema de Saturno y sus satelites e incluso anillo es mucho mas complejo. Pero aun asi, despues de 30 dias, Mimas solo se separa 200,000 km aproximadamente, lo cual no podria no ser tanto para objetos astronomicos.
 
+
+# Graficacion
 
 fig = plt.figure()
 
