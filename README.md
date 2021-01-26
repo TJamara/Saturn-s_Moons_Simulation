@@ -136,7 +136,7 @@ Después de varias pruebas, encontramos que dt = 2 nos dió los resultados más 
 
 ### Gráfica de divergencia (usando a Mimas)
 Muestra el error acumulado en metros en el eje y, y los días del mes en el eje x. El error (divergencia) se calcula con las mediciones reales de posición de Horizons de cada mes (30 mediciones) menos las  generadas con éste modelo.  El cálculo del error se hizo usando únicamente las posiciones de Mimas.         
-![Error](https://user-images.githubusercontent.com/28678081/105878453-b03ec880-5fc6-11eb-8815-dc04cfd4ea82.png)
+![Error](https://user-images.githubusercontent.com/28678081/105878453-b03ec880-5fc6-11eb-8815-dc04cfd4ea82.png)      
 Típicamente se obtiene que el error o distancia con la posición real diverge de manera lineal respecto al tiempo. Probablemente tenga que ver con la simplicidad del modelo ya que el sistema de Saturno y sus satélites e incluso anillos es mucho más complejo. Pero aun así, despues de 30 dias, Mimas solo se separa 200,000 km aproximadamente, lo cual no podría no ser tanto para objetos astronómicos, el tiempo de modelado y el uso de números sin precisión arbitraria.
 ### Visualización de órbitas
 
