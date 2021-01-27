@@ -216,7 +216,7 @@ x=[]
 y=[]
 
 
-puntitos_por_particula = 50 # Mientras mas alto, menos graficaciones
+puntitos_por_particula = 30 # Mientras más alto, más puntitos
 sk_val = int(n_steps/puntitos_por_particula) # Poner sk_val en el ciclo de abajo en 'if skip == sk_val'
 
 skip_val = 1800 # Debe ser una cantidad tal que su multiplicacion con el dt determinado divida al intervalo de tiempo de los datos de la NASA
@@ -231,7 +231,7 @@ save=False
 print(str(1)+'/'+str(n_steps))
 for time in range(1, n_steps+1): # Tiene que calcular desde el paso 0 hasta el paso n_steps (colocando n_steps+1) para calcular el intervalo de tiempo lenTime completo
 	print(str(time+1)+'/'+str(n_steps))
-	if skip == skip_val:
+	if skip == sk_val:
 	    skip=0
 	    save=True
 	system = nBody.integrate(float(time)*dt,save)
