@@ -16,11 +16,6 @@ Las siguientes librerías de python3:
 - json      
 
 Probado en Ubuntu20 y Windows10
-## Fuente de datos
-### Ejemplo: Mimas y Saturno
-En la siguiente imagen se muestran las condiciones iniciales (posición y velocidad) de Mimas con respecto a Saturno. Saturno, por ser el marco de referencia es el origen (la posición 0,0,0) en el espacio y no tiene velocidades iniciales (0,0,0). Se pueden hacer más consultas de datos en Horizons de la NASA [aquí](https://ssd.jpl.nasa.gov/horizons.cgi).                 
-
-![image](https://user-images.githubusercontent.com/28678081/103158099-d67f0780-477f-11eb-9f8e-caebb71069b7.png)
 
 ## Ejecución
 Clonar el git y correr n-body.py
@@ -124,6 +119,12 @@ Ahora sí podemos iterar.
 Usando la lista de posiciones (trayectory) de cada partícula, graficamos cada una con un color diferente y Saturno con un radio mayor al de sus lunas.
 ### Graficación de divergencia
 Para graficar la divergencia, comparamos los cálculos arrojados por nuestro modelo contra los datos de las observaciones reales de Horizons. Para ello excribimos en mimas_data.txt las posiciónes diarias de Mimas en un intervalo de 30 días. La función read_horizon() lee esos datos para posteriormete compararlos con los generados por el modelo.
+
+## Fuente de datos
+### Ejemplo: Mimas y Saturno
+En la siguiente imagen se muestran las condiciones iniciales (posición y velocidad) de Mimas con respecto a Saturno. Saturno, por ser el marco de referencia es el origen (la posición 0,0,0) en el espacio y no tiene velocidades iniciales (0,0,0). Se pueden hacer más consultas de datos en Horizons de la NASA [aquí](https://ssd.jpl.nasa.gov/horizons.cgi).                 
+
+![image](https://user-images.githubusercontent.com/28678081/103158099-d67f0780-477f-11eb-9f8e-caebb71069b7.png)
 
 ## Pruebas
 ### 1: 4 cuerpos, dt= 0.5 y 3 meses de modelado (minutos en ejecución)
