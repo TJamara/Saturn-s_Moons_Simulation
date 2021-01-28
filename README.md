@@ -14,6 +14,10 @@ Las siguientes librerías de python3:
 
 - matplotlib
 - json      
+- pandas as pd
+- numpy
+- re
+- datetime
 
 Probado en Ubuntu20 y Windows10
 

@@ -19,6 +19,7 @@
 import math
 import matplotlib
 import matplotlib.pyplot as plt
+import json
 import pandas as pd
 import numpy as np
 import re
@@ -183,7 +184,6 @@ VY=-3.906534056535731E-03*1.496e+11
 VZ= 2.741552242697911E-03*1.496e+11
 '''
 
-import json
 lunas = ["Mimas", "Encelados", "Tethys", "Dione", "Rhea", "Titan", "Iapetus"]
 with open('lunas.json') as json_file:
     luna = json.load(json_file)
