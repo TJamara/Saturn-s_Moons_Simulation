@@ -131,7 +131,7 @@ El plot tardó aproximadamente 4 horas. Nótese que estamos graficando puntos, p
 ![r1_2](https://user-images.githubusercontent.com/28678081/105621256-43131380-5dcb-11eb-9304-182e1a0e16b1.jpg)
 ### 2: Con algunas horas de modelado (minutos en ejecución), nos dimos cuenta que con dt=1 sí converge.
 ![p1](https://user-images.githubusercontent.com/28678081/105621390-8326c600-5dcc-11eb-8fb0-f505331975d0.jpg)
-### 3: Para tratar de optimizar un poco y hacer menos pesada la gráfica, decidimos sólo graficar 60 puntos por cada cuerpo.
+### 3: Para tratar de optimizar un poco y hacer menos pesada la gráfica, decidimos graficar menos puntos por cada cuerpo.
 ![Captura de pantalla (355)](https://user-images.githubusercontent.com/60940649/106086897-972e3880-60e8-11eb-9dc7-75aef1b657ff.png)
 
 ## Resultados
