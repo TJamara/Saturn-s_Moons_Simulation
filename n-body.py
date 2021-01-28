@@ -216,7 +216,7 @@ x=[]
 y=[]
 
 
-puntitos_por_particula = 30 # Mientras más alto, más puntitos
+puntitos_por_particula = 60 # Mientras más alto, más puntitos
 sk_val = int(n_steps/puntitos_por_particula) # Poner sk_val en el ciclo de abajo en 'if skip == sk_val'
 
 skip_val = 1800 # Debe ser una cantidad tal que su multiplicacion con el dt determinado divida al intervalo de tiempo de los datos de la NASA
@@ -252,10 +252,14 @@ for i, row in mimas_data.iterrows():
         position = np.array(trajectory[t_ix[0]], dtype=np.float32)
         real_pos = np.array([row.X, row.Y, row.Z], dtype=np.float32)*1000 # Transformando a metros
         errors.append(np.sqrt(np.sum((real_pos - position)**2)))
+plt.ylabel('Error en metros')
+plt.xlabel('Días')
     
 plt.plot(range(1, mimas_data.values.shape[0]), errors)
     
-# Tipicamente se obtiene que el error o distancia con la posicion real diverge de manerea lineaal respecto al tiempo. Probablemente tenga que ver con la simplicidad del modelo ya que el sistema de Saturno y sus satelites e incluso anillo es mucho mas complejo. Pero aun asi, despues de 30 dias, Mimas solo se separa 200,000 km aproximadamente, lo cual no podria no ser tanto para objetos astronomicos.
+# Tipicamente se obtiene que el error o distancia con la posicion real diverge de manerea lineal respecto al tiempo. Probablemente 
+# tenga que ver con la simplicidad del modelo ya que el sistema de Saturno y sus satelites e incluso anillo es mucho mas complejo. 
+# Pero aun asi, despues de 30 dias, Mimas solo se separa 200,000 km aproximadamente, lo cual podría no significar tanto para objetos astronomicos.
 
 
 # Graficacion
