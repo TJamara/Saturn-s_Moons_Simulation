@@ -131,19 +131,21 @@ En la siguiente imagen se muestran las condiciones iniciales (posición y veloci
 ![image](https://user-images.githubusercontent.com/28678081/103158099-d67f0780-477f-11eb-9f8e-caebb71069b7.png)
 
 ## Pruebas
-### 1: 4 cuerpos, dt= 0.5 y 3 meses de modelado (minutos en ejecución)
-El plot tardó aproximadamente 4 horas. Nótese que estamos graficando puntos, pero están tan juntos que parecen líneas.           
+### 1: 5 cuerpos, dt= 0.5 y 3 meses de modelado (minutos en ejecución)
+El plot tardó aproximadamente 4 horas. Posteriormente hicimos pruebas con dt más grandes para disminuir el tiempo de ejecución y graficación. Nótese que estamos graficando puntos, pero están tan juntos que parecen líneas.           
 ![r1_2](https://user-images.githubusercontent.com/28678081/105621256-43131380-5dcb-11eb-9304-182e1a0e16b1.jpg)
-### 2: Con algunas horas de modelado (minutos en ejecución), nos dimos cuenta que con dt=1 sí converge.
+### 2: Con algunas horas de modelado (+ minutos en ejecución), nos dimos cuenta que con dt=1 sí converge.  
+Ahora incluimos los 8 cuerpos y modelando menos tiempo. Las pruebas fueron satisfactorias, pero se elevó el tiempo de ejecución.      
 ![p1](https://user-images.githubusercontent.com/28678081/105621390-8326c600-5dcc-11eb-8fb0-f505331975d0.jpg)
 ### 3: Para tratar de optimizar un poco y hacer menos pesada la gráfica, decidimos graficar menos puntos por cada cuerpo.
+Graficamos 60 puntos por cada cuerpo, es decir guardamos las posiciones de cada partícula cada (1,296,000 ÷ 60) iteraciones para luego graficarlas, siendo 1,296,000 las iteraciones totales en 30 días de modelado y dt=2.       
 ![Captura de pantalla (355)](https://user-images.githubusercontent.com/60940649/106086897-972e3880-60e8-11eb-9dc7-75aef1b657ff.png)
 
 ## Resultados
-Después de varias pruebas, encontramos que dt = 2 nos dió los resultados más rápidos sin sacrificar la convergencia. En el sistema modelado están uncluídos 8 cuerpos: Saturno, Mimas, Encelados, Tethys, Dione, Rhea, Titan y Iapetus. El intervalo de tiempo modelado es de 30 días: del 24 de diciembre de 2020 al 23 de enero de 2021. El tiempo total de ejecución fue de aproximadamente 10 minutos.
+Después de varias pruebas más, encontramos que dt = 2 nos dió los resultados más rápidos sin sacrificar la convergencia. En el sistema modelado están incluídos 8 cuerpos: Saturno, Mimas, Encelados, Tethys, Dione, Rhea, Titan y Iapetus. El intervalo de tiempo modelado es de 30 días: del 24 de diciembre de 2020 al 23 de enero de 2021. El tiempo total de ejecución fue de aproximadamente 10 minutos.
 
 ### Gráfica de divergencia (usando a Mimas)
-Muestra el error acumulado en metros en el eje y, y los días del mes en el eje x. El error (divergencia) se calcula con las mediciones reales de posición de Horizons de cada mes (30 mediciones) menos las  generadas con éste modelo.  El cálculo del error se hizo usando únicamente las posiciones de Mimas.         
+Muestra el error acumulado en metros en el eje y, y los días del mes en el eje x. El error (divergencia) se calcula con la distancia euclideana entre mediciones reales de posición de Horizons de cada mes (30 mediciones) y las  generadas con éste modelo.  El cálculo del error se hizo usando únicamente las posiciones de Mimas.         
 ![error](https://user-images.githubusercontent.com/60940649/106086400-b082b500-60e7-11eb-8c99-051d038b39fd.png)     
 Típicamente se obtiene que el error o distancia con la posición real diverge de manera lineal respecto al tiempo. Probablemente tenga que ver con la simplicidad del modelo ya que el sistema de Saturno y sus satélites e incluso anillos es mucho más complejo. Pero aun así, despues de 30 dias, Mimas solo se separa 200,000 km aproximadamente, lo cual no podría no ser tanto para objetos astronómicos, el tiempo de modelado y el uso de números sin precisión arbitraria.
 ### Visualización de órbitas
@@ -156,6 +158,16 @@ En ésta imagen se observa que las órbitas de las Lunas de Saturno no están to
 ![Captura de pantalla (354)](https://user-images.githubusercontent.com/60940649/106086709-51717000-60e8-11eb-97e4-0212b73b5bfe.png)
 
 ## Conclusiones
+Cumplimos satisfactoriamente los objetivos.     
+
+Diseñamos una métrica para evaluar nuestro modelo, la cual consistió en comparar sus predicciones con mediciones reales.   
+
+Logramos visualizar consistentemente las órbitas de las lunas de Saturno.
+
+Encontramos el dt óptimo (2), partiendo de dt=1 el cual era propuesto en el trabajo en el que se basó éste. 
+
+Redujimos el número de puntos a graficar en el plot, haciéndolo mucho más eficiente.
+
 Pudimos experimentar cómo rápidamente aumentan los recursos para ejecutar el código y visualizar el plot en medida en que aumentamos el número de partículas y el tiempo a modelar, por eso la importancia de elegír el dt óptimo para reducir las operaciones en órdenes de magnitud.
 ## Bibliografía
 - Victor de la Luz, 2021 n-body     
