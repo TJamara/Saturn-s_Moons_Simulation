@@ -122,7 +122,7 @@ Ahora sí podemos iterar.
 ### Graficar
 Usando la lista de posiciones (trayectory) de cada partícula, graficamos cada una con un color diferente y Saturno con un radio mayor al de sus lunas.
 ### Graficación de divergencia
-Para graficar la divergencia, comparamos los cálculos arrojados por nuestro modelo contra los datos de las observaciones reales de Horizons. Para ello excribimos en mimas_data.txt las posiciónes diarias de Mimas en un intervalo de 30 días. La función read_horizon() lee esos datos para posteriormete compararlos con los generados por el modelo.
+Para graficar la divergencia, comparamos los cálculos arrojados por nuestro modelo contra los datos de las observaciones reales de Horizons. Para ello excribimos en mimas_data.txt y iapetus_data.txt las posiciónes diarias de Mimas y Iapetus en un intervalo de 30 días. La función read_horizon() lee esos datos para posteriormete compararlos con los generados por el modelo.
 
 ## Fuente de datos
 ### Ejemplo: Mimas y Saturno
