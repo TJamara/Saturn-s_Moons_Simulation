@@ -161,7 +161,12 @@ def read_horizon(fname):
     #print(dic)
     return pd.DataFrame(dic)
             
-    
+def save_pTrayectory_json(particle,savingPathName):
+    time, tra = particle.getTrajectory()
+    both = [[time[i], tra[i]] for i in range(len(time))]     
+    with open(savingPathName, 'w') as outfile:
+        json.dump(both, outfile)    
+ 
     
 lenTime=3600.0*24*30  #sec 30 dias desde el 24 de diciembre hasta el 23 de enero, el rango de los datos descargados de la NASA
 #lenTime=60*60*23 #  en segundos (periodo orbital de Mimas: 23 horas)
@@ -228,39 +233,68 @@ skip=1        # Porque se empieza en el primer step
 save=False
 #n_steps = 3
 
-print(str(1)+'/'+str(n_steps))
-for time in range(1, n_steps+1): # Tiene que calcular desde el paso 0 hasta el paso n_steps (colocando n_steps+1) para calcular el intervalo de tiempo lenTime completo
-	print(str(time+1)+'/'+str(n_steps))
-	if skip == sk_val:
-	    skip=0
-	    save=True
-	system = nBody.integrate(float(time)*dt,save)
-	save=False
-	skip += 1
-	#if t==1000000:
-	#	break
+print(str(0)+'/'+str(n_steps),end="\r")
+for time in range(1, n_steps+1): # Tiene que calcular desde el paso 0 hasta el paso n_steps (colocando n_steps+1) para calcular el intervalo de tiempo lenTime completo	
+    if skip == sk_val:
+        print(str(time)+'/'+str(n_steps),end="\r")
+        skip=0
+        save=True
+    system = nBody.integrate(float(time)*dt,save)
+    save=False
+    skip += 1
+    #if t==1000000:
+    #	break
 
-# Error
+# ----------------------------------------------------------------------------------------------------------------------------- #
+
+# Error Mimas
 mimas_data = read_horizon('mimas_data.txt')
 t, trajectory = particles[1].getTrajectory() # tiempos y trayectoria de Mimas
 #print(mimas_data.values)
 errors = []
+distancia_media_mimas_saturno = 185539000 #metros 
+   
 for i, row in mimas_data.iterrows():
     if i!= 0:
         seconds = (datetime.fromisoformat(row.datetime) - datetime.fromisoformat(mimas_data.values[0][0])).total_seconds()
         t_ix = [j for j, item in enumerate(t) if item == seconds]
         position = np.array(trajectory[t_ix[0]], dtype=np.float32)
         real_pos = np.array([row.X, row.Y, row.Z], dtype=np.float32)*1000 # Transformando a metros
-        errors.append(np.sqrt(np.sum((real_pos - position)**2)))
-plt.ylabel('Error en metros')
-plt.xlabel('Días')
+        errors.append(np.sqrt(np.sum((real_pos - position)**2))/distancia_media_mimas_saturno)
+plt.ylabel('e/dp')
+plt.xlabel('días')
+plt.title('Mimas')
     
 plt.plot(range(1, mimas_data.values.shape[0]), errors)
-    
+plt.show()    
 # Tipicamente se obtiene que el error o distancia con la posicion real diverge de manerea lineal respecto al tiempo. Probablemente 
 # tenga que ver con la simplicidad del modelo ya que el sistema de Saturno y sus satelites e incluso anillo es mucho mas complejo. 
 # Pero aun asi, despues de 30 dias, Mimas solo se separa 200,000 km aproximadamente, lo cual podría no significar tanto para objetos astronomicos.
 
+# ----------------------------------------------------------------------------------------------------------------------------- #
+
+# Error Iapetus
+mimas_data = read_horizon('iapetus_data.txt')
+t, trajectory = particles[7].getTrajectory() # tiempos y trayectoria de Mimas
+#print(mimas_data.values)
+errors = []
+distancia_media_iapetus_saturno = 3560820000 #metros 
+   
+for i, row in mimas_data.iterrows():
+    if i!= 0:
+        seconds = (datetime.fromisoformat(row.datetime) - datetime.fromisoformat(mimas_data.values[0][0])).total_seconds()
+        t_ix = [j for j, item in enumerate(t) if item == seconds]
+        position = np.array(trajectory[t_ix[0]], dtype=np.float32)
+        real_pos = np.array([row.X, row.Y, row.Z], dtype=np.float32)*1000 # Transformando a metros
+        errors.append(np.sqrt(np.sum((real_pos - position)**2))/distancia_media_iapetus_saturno)
+plt.ylabel('e/dp')
+plt.xlabel('días')
+plt.title('Iapetus')
+    
+plt.plot(range(1, mimas_data.values.shape[0]), errors)
+plt.show()
+
+# ----------------------------------------------------------------------------------------------------------------------------- #
 
 # Graficacion
 
@@ -286,3 +320,4 @@ plt.show()
 
 
 
+#save_pTrayectory_json(particles[1],'soloModelandoIapetus.json')
