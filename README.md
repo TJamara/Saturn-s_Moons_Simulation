@@ -144,10 +144,22 @@ Graficamos 60 puntos por cada cuerpo, es decir guardamos las posiciones de cada 
 ## Resultados
 Después de varias pruebas más, encontramos que dt = 2 nos dió los resultados más rápidos sin sacrificar la convergencia. En el sistema modelado están incluídos 8 cuerpos: Saturno, Mimas, Encelados, Tethys, Dione, Rhea, Titan y Iapetus. El intervalo de tiempo modelado es de 30 días: del 24 de diciembre de 2020 al 23 de enero de 2021. El tiempo total de ejecución fue de aproximadamente 10 minutos.
 
-### Gráfica de divergencia (usando a Mimas)
-Muestra el error acumulado en metros en el eje y, y los días del mes en el eje x. El error (divergencia) se calcula con la distancia euclideana entre mediciones reales de posición de Horizons de cada mes (30 mediciones) y las  generadas con éste modelo.  El cálculo del error se hizo usando únicamente las posiciones de Mimas.         
-![error](https://user-images.githubusercontent.com/60940649/106086400-b082b500-60e7-11eb-8c99-051d038b39fd.png)     
-Típicamente se obtiene que el error o distancia con la posición real diverge de manera lineal respecto al tiempo. Probablemente tenga que ver con la simplicidad del modelo ya que el sistema de Saturno y sus satélites e incluso anillos es mucho más complejo. Pero aun así, despues de 30 dias, Mimas solo se separa 200,000 km aproximadamente, lo cual no podría no ser tanto para objetos astronómicos, el tiempo de modelado y el uso de números sin precisión arbitraria.
+### Gráfica de divergencia (usando a Mimas y Iapetus)
+- Eje x: _días_ 
+- Eje y: _e/dp_, donde _e_ es el error en metros y _dp_ es la distancia promedio del satélite a Saturno.     
+
+
+El error (divergencia) se calcula con la distancia euclideana entre mediciones reales de posición de Horizons de cada mes (30 mediciones) y las  generadas con éste modelo.  El cálculo del error se hizo usando únicamente las posiciones de Mimas y las de Iapetus.         
+
+
+
+#### Mimas
+![Error_conjunto_mimas](https://user-images.githubusercontent.com/28678081/106224057-31a18100-61a8-11eb-8d0f-6af58a308bda.png)        
+Resulta que Mimas no converge, lo cual nos resultó muy extraño porque la gráfica muestra que Mimas se desvía demasiado y nuestras visualizaciones con puntitos no muestran perturbaciones tan extremas (¡del 100%!). Después de varias pruebas vimos que Mimas se iba atrasando en cada iteración, como si estuviera moviéndose en cámara lenta en la trayectoria correcta. Por eso pasó desapercibido en la etapa de pruebas, el error estaba escondido. 
+
+#### Iapetus
+![Error_conjunto_Iapetus](https://user-images.githubusercontent.com/28678081/106224064-36fecb80-61a8-11eb-9a7f-aba7f55d2f16.png)         
+Se nos ocurrió medir la divergencia de Iapetus, ya que a diferencia de Mimas que cuenta con el periodo orbital más córto (y angosto) de 0.9 días, éste cuenta con el más largo de 79 días. Diverge muchísimo menos, ni siquiera llega a 0.01 e/dp.
 ### Visualización de órbitas
 
 ![R1](https://user-images.githubusercontent.com/28678081/105872492-1a07a400-5fc0-11eb-872f-e9481ec02e9f.png)       
@@ -160,15 +172,15 @@ En ésta imagen se observa que las órbitas de las Lunas de Saturno no están to
 ## Conclusiones
 Cumplimos satisfactoriamente los objetivos.     
 
-Diseñamos una métrica para evaluar nuestro modelo, la cual consistió en comparar sus predicciones con mediciones reales.   
+Diseñamos una métrica para evaluar nuestro modelo, la cual consistió en comparar sus predicciones con mediciones reales. Y aunque los resultados de convergencia del modelo fueron mezclados, nos dimos cuenta de la posibilidad de que en el modelado de un sistema algunos cuerpos converjan y otros no. Hicimos muchos más experimentos con dt's más pequeñas (ej.: 0.25) pero no observamos mejora alguna. Creemos que es necesario un dt muchísimo más pequeño para converger con la solución de órbitas mucho más angostas como la de Mimas. Naturalmente surge la pregunta de cómo modelar un sistema cuyos cuerpos necesitan dt's muy diferentes para converger.    
 
 Logramos visualizar consistentemente las órbitas de las lunas de Saturno.
 
-Encontramos el dt óptimo (2), partiendo de dt=1 el cual era propuesto en el trabajo en el que se basó éste. 
+Encontramos el dt óptimo al menos para Iapetus, partiendo del dt=1 propuesto en el trabajo en que éste se basó. 
 
 Redujimos el número de puntos a graficar en el plot, haciéndolo mucho más eficiente.
 
-Pudimos experimentar cómo rápidamente aumentan los recursos para ejecutar el código y visualizar el plot en medida en que aumentamos el número de partículas y el tiempo a modelar, por eso la importancia de elegír el dt óptimo para reducir las operaciones en órdenes de magnitud.
+Pudimos experimentar cómo rápidamente aumentan los recursos para ejecutar el código y visualizar el plot en medida en que aumentamos el número de partículas y el tiempo a modelar, por eso la importancia de elegir el dt óptimo para reducir las operaciones en órdenes de magnitud.     
 ## Bibliografía
 - Victor de la Luz, 2021 n-body     
 https://github.com/itztli/n-body
