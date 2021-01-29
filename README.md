@@ -173,7 +173,9 @@ En ésta imagen se observa que las órbitas de las Lunas de Saturno no están to
 ## Conclusiones
 Cumplimos satisfactoriamente los objetivos.     
 
-Diseñamos una métrica para evaluar nuestro modelo, la cual consistió en comparar sus predicciones con mediciones reales. Y aunque los resultados de convergencia del modelo fueron mezclados, nos dimos cuenta de la posibilidad de que en el modelado de un sistema algunos cuerpos converjan y otros no. Hicimos muchos más experimentos con dt's más pequeñas (ej.: 0.25) pero no observamos mejora alguna. Creemos que es necesario un dt muchísimo más pequeño para converger con la solución de órbitas mucho más angostas como la de Mimas. El 'movimiento' de cada partícula en el modelo de un dt a otro es recto, la pequeñez del dt hace que el movimiento parezca curvo. La idea es que la órbita de Mimas es tan pequeña que el dt ya no parece ser tan pequeño para ella, entonces la órbita modelada empieza a parecerse más a un polígono que a una curva. Cada dt la partícula avanza demasiado y para el siguiente dt tiene que corregir mucho la trayectoria dejando un 'pico' fuera de la órbita real, con las iteraciones los picos se van acumulando y la particula se va quedando atrás porque está recorriendo más camino (pasando por los picos). Sin embargo por el momento no tenemos suficientes pruebas para afirmarlo. Naturalmente surge la pregunta de cómo modelar un sistema cuyos cuerpos necesitan dt's muy diferentes para converger.    
+Diseñamos una métrica para evaluar nuestro modelo, la cual consistió en comparar sus predicciones con mediciones reales. Y aunque los resultados de convergencia del modelo fueron mezclados, nos dimos cuenta de la posibilidad de que en el modelado de un sistema algunos cuerpos converjan y otros no. Hicimos muchos más experimentos con dt's más pequeñas (ej.: 0.25) pero no observamos mejora alguna. 
+> #### Hipotesis divergencia de Mimas
+> Creemos que es necesario un dt muchísimo más pequeño para converger con la solución de órbitas mucho más angostas como la de Mimas. El 'movimiento' de cada partícula en el modelo de un dt a otro es recto, la pequeñez del dt hace que el movimiento parezca curvo. La idea es que la órbita de Mimas es tan pequeña que el dt ya no parece ser tan pequeño para ella, entonces la órbita modelada empieza a parecerse más a un polígono que a una curva. Cada dt la partícula avanza demasiado y para el siguiente dt tiene que corregir mucho la trayectoria dejando un 'pico' fuera de la órbita real, con las iteraciones los picos se van acumulando y la particula se va quedando atrás porque está recorriendo más camino (pasando por los picos). Sin embargo por el momento no tenemos suficientes pruebas para afirmarlo. Naturalmente surge la pregunta de cómo modelar un sistema cuyos cuerpos necesitan dt's muy diferentes para converger.    
 
 Logramos visualizar consistentemente las órbitas de las lunas de Saturno.
 
@@ -182,6 +184,8 @@ Encontramos el dt óptimo al menos para Iapetus, partiendo del dt=1 propuesto en
 Redujimos el número de puntos a graficar en el plot, haciéndolo mucho más eficiente.
 
 Pudimos experimentar cómo rápidamente aumentan los recursos para ejecutar el código y visualizar el plot en medida en que aumentamos el número de partículas y el tiempo a modelar, por eso la importancia de elegir el dt óptimo para reducir las operaciones en órdenes de magnitud.     
+
+Necesitamos seguir haciendo experimentos.
 ## Bibliografía
 - Victor de la Luz, 2021 n-body     
 https://github.com/itztli/n-body
