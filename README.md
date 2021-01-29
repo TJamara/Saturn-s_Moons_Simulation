@@ -5,6 +5,10 @@ Modelo de n-cuerpos de Saturno y algunas de sus lunas.
 Rafael Pérez - <tinoco21.30@gmail.com>    
 Elena Bedolla - <maria.elena.bedolla.zamudio@gmail.com>      
 Javier Navarro - <javojavojavojavo@gmail.com>
+### Afiliación
+![https://upload.wikimedia.org/wikipedia/commons/7/79/LOGO-COMPUESTO-UNAM-ENES_-_copia.png](https://user-images.githubusercontent.com/28678081/106318209-2e080b80-6235-11eb-944f-4d40f52ecedb.png)                
+Somos estudiantes de 5to semestre (al momento de edición) de la Licenciatura Tecnologías para la Inforamción en Ciencias impartida en la UNAM en la Escuela Nacional de Estudios Superiores Unidad Morelia.
+
 ## Licencia
 GNU General Public License v3.0
 ## Requerimientos
