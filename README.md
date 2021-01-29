@@ -131,6 +131,7 @@ En la siguiente imagen se muestran las condiciones iniciales (posición y veloci
 ![image](https://user-images.githubusercontent.com/28678081/103158099-d67f0780-477f-11eb-9f8e-caebb71069b7.png)
 
 ## Pruebas
+Partimos con los parámetros propuestos en el trabajo original: _dt = 1_ y _lenTime_ de 1 mes. 
 ### 1: 5 cuerpos, dt= 0.5 y 3 meses de modelado (minutos en ejecución)
 El plot tardó aproximadamente 4 horas. Posteriormente hicimos pruebas con dt más grandes para disminuir el tiempo de ejecución y graficación. Nótese que estamos graficando puntos, pero están tan juntos que parecen líneas.           
 ![r1_2](https://user-images.githubusercontent.com/28678081/105621256-43131380-5dcb-11eb-9304-182e1a0e16b1.jpg)
