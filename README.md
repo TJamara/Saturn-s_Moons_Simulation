@@ -18,7 +18,7 @@ Las siguientes librerías de python3:
 
 - matplotlib
 - json      
-- pandas as pd
+- pandas
 - numpy
 - re
 - datetime
