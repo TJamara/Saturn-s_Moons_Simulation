@@ -1,20 +1,21 @@
-# Lunas de Saturno
-Modelo de n-cuerpos de Saturno y algunas de sus lunas.     
-Ésta es una versión nueva del modelo que parte de [este repositorio](https://github.com/itztli/n-body) cuyo autor es [itztli](https://github.com/itztli).
-## Autores
+# Saturn's Moons
+N-body model of Saturn and some of its moons.       
+This is a new version of the model that stems from [this repository](https://github.com/itztli/n-body) whose author is [itztli](https://github.com/itztli).       
+## Authors
 Rafael Pérez - <tinoco21.30@gmail.com>    
 Elena Bedolla - <maria.elena.bedolla.zamudio@gmail.com>      
 Javier Navarro - <javojavojavojavo@gmail.com>
-### Afiliación
+### Afiliation
 ![https://upload.wikimedia.org/wikipedia/commons/7/79/LOGO-COMPUESTO-UNAM-ENES_-_copia.png](https://user-images.githubusercontent.com/28678081/106318209-2e080b80-6235-11eb-944f-4d40f52ecedb.png)                
-Somos estudiantes de 5to semestre (al momento de edición) de la Licenciatura Tecnologías para la Inforamción en Ciencias impartida en la UNAM en la Escuela Nacional de Estudios Superiores Unidad Morelia.
+We are BS IT students at UNAM (Universidad Nacional Autómoma de México) specifically at the ENES (Escuela Nacional de Estudios Superiores) Morelia.      
+Degree name: Licenciatura en Tecnologías para la Información en Ciencias (IT in science)
 
-## Licencia
+## License
 GNU General Public License v3.0
-## Requerimientos
+## Requirements
 - python3      
 
-Las siguientes librerías de python3:      
+The following python3 libraries:      
 
 - matplotlib
 - json      
@@ -23,174 +24,175 @@ Las siguientes librerías de python3:
 - re
 - datetime
 
-Probado en Ubuntu20 y Windows10
+Tested on Ubuntu20 and Windows10 in a conda environment.
 
-## Ejecución
-Clonar el git y correr n-body.py
+## Execution
+Clone git and run n-body.py
 
 
-## Introducción (marco teórico)
-El problema de los n-cuerpos fue un modelo matemático sugerido por Isaac Newton en 1687 para poder modelar el comportamiento de nuestro sistema planetario, aunque esta técnica ha sido de gran ayuda en el modelizado de cualquier órbita planetaria. El modelizado de órbitas se basa en crear modelos matemáticos para simular el movimiento de un cuerpo masivo a medida que se mueve en órbita alrededor de otro cuerpo masivo debido a la gravedad.
+## Introduction
+The n-body problem was a mathematical model suggested by Isaac Newton in 1687 to model the behavior of our planetary system, although this technique has been of great help in the modeling of any planetary orbit. Orbit modeling relies on creating mathematical models to simulate the motion of a massive body as it orbits another masive body due to gravity.
 
-Por su parte, Saturno tiene 82 lunas confirmadas con diámetro que varía desde unos cuantos metros hasta más grande que el del planeta Mercurio. Sus órbitas son diferentes a las de sus anillos y sus periodos orbitales también varían, por ejemplo el de Hyperion dura 21 días y el de Mimas dura 24 horas. En el presente trabajo usaremos el modelo numérico integrador de n-cuerpos usando las leyes de Newton para modelar Saturno y algunas de sus lunas ya que no contamos con los recursos computacionales para modelarlo completo). 
+Saturn has 82 confirmed moons with diameter ranging  from a few meters to larger than that of the planet Mercury. Their orbits are different from those of their rings and their orbital periods also vary, for exampe that of Hyperion lasts 21 days and that of Mimas lasts only 24 hours. In this work we'll use the integrative numerical model of n-bodies using Newton's laws to model Saturn and some of its moons since we don't have the computational resources to model them all.
+ 
 
 
  
-### Fórmulas de Newton e integración de posiciones 
-Las fórmulas están escritas en negro por lo cual se recomienda usar fondo blanco.
-#### Segunda ley de Newton   
+### Newton's Laws and position integration 
+The formulas are written in black so it's advised to use a white background.
+#### Newton's Second Law   
 <img src="https://render.githubusercontent.com/render/math?math=F = ma">     
 
-#### Ley de la gravitación universal
+#### Universal Gravitational Law
 <img src="https://render.githubusercontent.com/render/math?math=F = \frac{GMm}{r^2}">    
 
-       
-La diferencia es que como trabajamos en un campo vectorial de 3 dimensiones, tenemos que agregar el vector u que nos va a indicar la dirección de las fuerzas y F ahora es un vector también. Adicionalmente dividiremos entre <img src="https://render.githubusercontent.com/render/math?math=r^3"> en lugar de <img src="https://render.githubusercontent.com/render/math?math=r^2">.       
-#### N-cuerpos
-La ley de la gravitación universal describe la fuerza entre 2 cuerpos, para generalizarla a n-cuerpos, podemos sumar todas las fuerzas de un cuerpo con los demás y hacerle así para cada cuerpo.         
+
+The difference is that since we work in a 3-dimensional vector field, we have to add the vector u that will indicate the direction of the forces and F is now a vector as well. Additionally we divide by <img src="https://render.githubusercontent.com/render/math?math=r^3"> instead of <img src="https://render.githubusercontent.com/render/math?math=r^2">.       
+#### N-bodies
+The law of universal gravitation describes the force between 2 bodies, to generalize it to n-bodies, we can add all the forces of a body with the others and do so for each body.         
   
-La suma queda así:      
+The sum is:
 <img src="https://render.githubusercontent.com/render/math?math=F = GM  \sum_{i} (\frac{m_i}{r_{i}^3})u_i ">     
  
-Sustituimos <img src="https://render.githubusercontent.com/render/math?math=F = Ma">:     
+We substitute <img src="https://render.githubusercontent.com/render/math?math=F = Ma">:     
 <img src="https://render.githubusercontent.com/render/math?math=a = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i">      
 
-Sabemos que <img src="https://render.githubusercontent.com/render/math?math=a = \frac{dv}{dt}">, entonces:     
+We know that <img src="https://render.githubusercontent.com/render/math?math=a = \frac{dv}{dt}">, so:     
 <img src="https://render.githubusercontent.com/render/math?math=\frac{dv}{dt} = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i">         
 
-Integramos y nos queda la velocidad:      
+We integrate and are left with velocity:      
 <img src="https://render.githubusercontent.com/render/math?math=v = G  \int \sum_{i} (\frac{m_i}{r_{i}^3})u_i \,dt">         
 
-Como nada depende del tiempo, entonces:    
+As nothing depends on time, then:    
 <img src="https://render.githubusercontent.com/render/math?math=v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i \int \,dt">           
 <img src="https://render.githubusercontent.com/render/math?math=v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i (t1-t0)">           
 <img src="https://render.githubusercontent.com/render/math?math=v = G  ( \sum_{i} (\frac{m_i}{r_{i}^3})u_i) dt">        
-Entonces ya sabemos cuál es la velocidad.      
+So then we know what's the velocity.      
 
-Sabemos también que <img src="https://render.githubusercontent.com/render/math?math=v = \frac{dx}{dt}">, sustituimos:      
+We also know that <img src="https://render.githubusercontent.com/render/math?math=v = \frac{dx}{dt}">, sustituimos:      
 <img src="https://render.githubusercontent.com/render/math?math=\frac{dx}{dt} = v">           
 
-Integramos:     
+We integrate:     
 <img src="https://render.githubusercontent.com/render/math?math=x = \int v \,dt">       
 
-Ahora sacamos a v de la integral aunque sí dependa del tiempo, lo que suponemos es que los saltos de tiempo son tan pequeños que tiene un efecto insignificante para los fines del modelo, entonces:        
+Now we take v out of the integral although it does depend on time, what we assume is that the time jumps are so small that it has an insignificant effect for the purposes of the model, then:        
 <img src="https://render.githubusercontent.com/render/math?math=x = v \int \,dt">      
 <img src="https://render.githubusercontent.com/render/math?math=x = v  (t1-t0)">     
 <img src="https://render.githubusercontent.com/render/math?math=x = v dt">        
 
-La x calculada es el cambio de posición de una partícula después de un determinado dt. Entonces para calcular la posición nueva de la partícula sólo hay que sumarle el cambio calculado a la vieja posición.
+The calculated x is the change in position of a particle after a certain dt. Then, to calculate the new position of the particle, you just have to add the calculated change to the old position.
 
 
-## Justificación
-Establecer un precedente de una modelación específica de las lunas de Saturno y al mismo tiempo usar, descubrir o/y crear e implementar técnicas que nos permitan hacer un modelo óptimo el cual nos sirva de herramienta para conocer el sistema de Saturno y saber qué le ocurrirá en el futuro.
+## Justification
+Establish a precedent for a specific modeling of the moons of Saturn and at the same time use, discover or/and create and implement techniques that allow us to make an optimal model which will serve as a tool to know the Saturn system and know what will happen to it in the future.
 
 
-## Objetivos
-- Diseñar una métrica (o usar una existente) para saber cuánta precisión tiene nuestro modelo
+## Objectives
+- Disign a metric (or use an existing one) to know how much precision our model has
 
-- Converger con la solución del movimiento de las lunas de Saturno
-- Visualizar el movimiento de algunos satélites de Saturno 
+- Converge with the solution of the motion of the moons of Saturn
+- Visualize the movement of some satellites of Saturn 
 
-- Encontrar los parámetros óptimos. Entender qué efecto tienen diferentes pasos de integración en diferentes masas de cuerpos celestes a diferentes distancias y con diferentes velocidades
-- Optimizar el código para que sea más rápido y así poder incluir más cuerpos celestes al mismo tiempo
+- Find the optimal parameters. Understand what effect different integration steps have on different masses of celestial bodies at different distances and with different velocities
+- Optimize the code to be faster so that it can include more celestial bodies at the same time
 
-## Metodología e implementación 
-### Unidades
-- Distancia: metros
-- Masa: kilogramos
-- Tiempo: segundos      
+## Methodology and implementation 
+### Units
+- Distance: meters
+- Mass: kilograms
+- Time: seconds      
 
-G está definida como variable global considerando las unidades anteriores.
-### Clases y métodos
+G is defined as a global variable considering the above units.
+### Classes and methods
 #### Particle
-La clase Particle nos sirve para crear objetos partículas, cada uno con su respectiva posición, velocidad, masa, trajectoria y tiempo (inicializado en 0).
-##### Métodos de Particle
-- Están definidos getters para: posición, velocidad, energía cinética y para la trayectoria.    
-- Está definido un setter de dt. \*\*\*Creo que no usamos este método     
-- computeR: Regresa distancia entre 2 vectores. 
-- computeU: Regresa la resta entre 2 vectores (la dirección de 'R').
-- integrate: Actualiza la posición con el dt especificado. \*\*\*Creo que este método tampoco lo usamos, hace el trabajo de computeV, updateV y updatePosition, creo que no hace falta
-- computeV: Calcula la velocidad de la partícula tomando en cuenta la posición y masa de otro único cuerpo.
-- updateV: Suma una nueva velocidad (calculada en computeV) a la velocidad de la partícula actualizándola.
-- updatePosition: Actualiza la posición sumándole la velocidad multiplicada por la misma posición. Si la variable save es 'True', entonces guarda la posición (en trajectoria) para su futura graficación.
+The Particle class helps us to create particle objects, each one with its respective position, velocity, mass, trajectory and time (initialized at 0).
+##### Particle Methods
+- Getters are defined for: position, velocity, kinetic energy and for the trajectory.    
+- A dt setter is defined. \*\*\*I think we don't use this method     
+- computeR: Returns distance between 2 vectors. 
+- computeU: Returns the substraction between 2 vectors (the direction of 'R').
+- integrate: Update the position with the specified dt. \*\*\* I don't think we use this method either, it does the work of computeV, updateV and updatePosition, I don't think it is necessary
+- computeV: Calculate the velocity of the particle taking into account the position and mass of another single body.
+- updateV: Adds a new velocity (calculated in computeV) to the velocity of the particle updating it.
+- updatePosition: Updates the position by adding the velocity multiplied by the same position. If the save variable is 'True', then it saves the position (in trajectory) for future graphing.
 
 #### Potential
-La clase Potential pone a funcionar a todos los objetos partículas. Se inicializa con una lista de objetos Particle, en este caso Saturno y sus lunas, y con el dt.
-##### Método integrante
-Tiene 2 tareas:    
-La primera consiste en iterar las partículas todas contra todas y actualizar sus velocidades tomando en cuenta cada interacción. La segunda tarea consiste en actualizar la posición de todas las partículas usando las velocidades previamente actualizadas.
-### Definiendo partículas y parámetros
-Para iterar el modelo debemos definir primero cuántas veces se va a iterar y de que tamaño va a ser el dt en cada iteración. También tenemos que llevar la cuenta del tiempo transcurrido para guardar la trayectoria que incluye el tiempo y la posición. Además tenemos que crear objetos partículas (Saturno y sus lunas en este caso), cuyas condiciones iniciales del 24 de diciembre de 2020 las guardamos en lunas.json.      
+The Potential class puts all particle objects to work. It is initialized with a list of Particle objects, in this case Saturn and its moons, and with the dt.
+##### Integrative method
+It has 2 tasks:          
+The first consists of iterating the particles all against all and updating their velocity taking into account each interaction. The second task is to update the position of all the particles using the previously updated velocity.
+### Defining particles and parameters
+To iterate the model, we must first define how many times it is going to be iterated and what size the dt is going to be in each iteration. We also have to keep track of the elapsed time to save the trajectory that includes time and position. Additionally we have to create particle objects (Saturn and its moons in this case), whose initial conditions of December 24, 2020 are stored in lunas.json.      
 
-Ahora sí podemos iterar.
-### Graficar
-Usando la lista de posiciones (trayectory) de cada partícula, graficamos cada una con un color diferente y Saturno con un radio mayor al de sus lunas.
-### Graficación de divergencia
-Para graficar la divergencia, comparamos los cálculos arrojados por nuestro modelo contra los datos de las observaciones reales de Horizons. Para ello excribimos en mimas_data.txt y iapetus_data.txt las posiciónes diarias de Mimas y Iapetus en un intervalo de 30 días. La función read_horizon() lee esos datos para posteriormete compararlos con los generados por el modelo.
+Now we can iterate.
+### Plot
+Using the list of positions (trajectory) of each particle, we plot each one with a different color and Saturn with a radius greater than that of its moons.
+### Divergence Plot
+To graph the divergence, we compare the calculations from our model against the data from the actual Horizons observations. For this we write in mimas_data.txt and iapetus_data.txt the daily positions of Mimas and Iapetus in an interval of 30 days. The read_horizon() funciton reads this data to later compare it with that generated by the model.
 
-## Fuente de datos
-### Ejemplo: Mimas y Saturno
-En la siguiente imagen se muestran las condiciones iniciales (posición y velocidad) de Mimas con respecto a Saturno. Saturno, por ser el marco de referencia es el origen (la posición 0,0,0) en el espacio y no tiene velocidades iniciales (0,0,0). Se pueden hacer más consultas de datos en Horizons de la NASA [aquí](https://ssd.jpl.nasa.gov/horizons.cgi).                 
+## Data source
+### Example: Mimas and Saturn
+The following image shows the initial conditions (position and velocity) of Mimas with respect to Saturn. Saturn being the reference frame, is the origin (position 0,0,0) in space and has no initial velocities (0,0,0). More data queries can be done on NASA's Horizons [here](https://ssd.jpl.nasa.gov/horizons.cgi).                 
 
 ![image](https://user-images.githubusercontent.com/28678081/103158099-d67f0780-477f-11eb-9f8e-caebb71069b7.png)
 
-## Pruebas
-Partimos con los parámetros propuestos en el trabajo original: _dt = 1_ y _lenTime_ de 1 mes. 
-### 1: 5 cuerpos, dt= 0.5 y 3 meses de modelado (minutos en ejecución)
-El plot tardó aproximadamente 4 horas. Posteriormente hicimos pruebas con dt más grandes para disminuir el tiempo de ejecución y graficación. Nótese que estamos graficando puntos, pero están tan juntos que parecen líneas.           
+## Tests
+We start with the parameters proposed in the original work: _dt = 1_ and _lenTime_ of 1 month. 
+### 1: 5 bodies, dt= 0.5 and 3 months of modeling (minutes in execution)
+The plot took approximately 4 hours. Later we did tests with larger dts to decrease the execution and graphing time. Note that we are plotting points, but they are so close together that they look like lines.           
 ![r1_2](https://user-images.githubusercontent.com/28678081/105621256-43131380-5dcb-11eb-9304-182e1a0e16b1.jpg)
-### 2: Con algunas horas de modelado (+ minutos en ejecución), nos dimos cuenta que con dt=1 sí converge.  
-Ahora incluimos los 8 cuerpos y modelando menos tiempo. Las pruebas fueron satisfactorias, pero se elevó el tiempo de ejecución.      
+### 2: With a few hours of modeling (+ minutes in execution), we realized that with dt = 1 it does converge  
+\*\*\*Now we included the 8 bodies and modeled less time. The tests where successful, but the execution time was increased.      
 ![p1](https://user-images.githubusercontent.com/28678081/105621390-8326c600-5dcc-11eb-8fb0-f505331975d0.jpg)
-### 3: Para tratar de optimizar un poco y hacer menos pesada la gráfica, decidimos graficar menos puntos por cada cuerpo.
-Graficamos 60 puntos por cada cuerpo, es decir guardamos las posiciones de cada partícula cada (1,296,000 ÷ 60) iteraciones para luego graficarlas, siendo 1,296,000 las iteraciones totales en 30 días de modelado y dt=2.       
+### To try to optimize a bit and make the graph less heavy, we decided to graph fewer points for each body.
+We graph 60 points for each body, that is, we save the positions of each particle every (1,296,000 ÷ 60) iterations and then we graph them, with 1,296,000 being the total iterations in 30 days of modeling and dt = 2.       
 ![Captura de pantalla (355)](https://user-images.githubusercontent.com/60940649/106086897-972e3880-60e8-11eb-9dc7-75aef1b657ff.png)
 
-## Resultados
-Después de varias pruebas más, encontramos que dt = 2 nos dió los resultados más rápidos sin sacrificar la convergencia. En el sistema modelado están incluídos 8 cuerpos: Saturno, Mimas, Encelados, Tethys, Dione, Rhea, Titan y Iapetus. El intervalo de tiempo modelado es de 30 días: del 24 de diciembre de 2020 al 23 de enero de 2021. El tiempo total de ejecución fue de aproximadamente 10 minutos.
+## Results
+After several more tests, we found that dt = 2 gave us the fastest results without sacrificing convergence. 8 bodies are included in the modeled system: Saturn, Mimas, Enceladus, Tethys, Dione, Rhea, Titan and Iapetus. The modeled time interval is 30 days: December 24, 2020 to January 23, 2021. The total execution time was approximately 10 minutes.
 
-### Gráfica de divergencia (usando a Mimas y Iapetus)
-- Eje x: _días_ 
-- Eje y: _e/dp_, donde _e_ es el error en metros y _dp_ es la distancia promedio del satélite a Saturno.     
+### Divergence plot (using Mimas and Iapetus)
+- X axis: _days_ 
+- Y axis: _e/dp_, where _e_ is the error in meters and _dp_ is the average distance from the satellite to Saturn.     
 
 
-El error (divergencia) se calcula con la distancia euclideana entre mediciones reales de posición de Horizons de cada mes (30 mediciones) y las  generadas con éste modelo.  El cálculo del error se hizo usando únicamente las posiciones de Mimas y las de Iapetus.         
+The error (divergence) is calculated with the Euclidean distance between real measurements of position (from Horizons) of each month (30 measurements) and those generated with this model. The calculation of the error was made using only the positions of Mimas and those of Iapetus.         
 
 
 
 #### Mimas
 ![Error_conjunto_mimas](https://user-images.githubusercontent.com/28678081/106224057-31a18100-61a8-11eb-8d0f-6af58a308bda.png)        
-Resulta que Mimas no converge, lo cual nos resultó muy extraño porque la gráfica muestra que Mimas se desvía demasiado y nuestras visualizaciones con puntitos no muestran perturbaciones tan extremas (¡del 100%!). Después de varias pruebas vimos que Mimas se iba atrasando en cada iteración, como si estuviera moviéndose en cámara lenta en la trayectoria correcta. Por eso pasó desapercibido en la etapa de pruebas, el error estaba escondido. 
+It turns out that Mimas does not converge, wich was very strange to us because the graph shows that Mimas deviates too much, and our dotted plots do not show such extreme disturbances (Of 100%!). After several tests we saw that Mimas was lagging in each iteration, as if it were moving in slow motion on the correct path. That is why it went unnoticed in the testing stage, the error was hidden.  
 
 #### Iapetus
 ![Error_conjunto_Iapetus](https://user-images.githubusercontent.com/28678081/106224064-36fecb80-61a8-11eb-9a7f-aba7f55d2f16.png)         
-Se nos ocurrió medir la divergencia de Iapetus, ya que a diferencia de Mimas que cuenta con el periodo orbital más córto (y angosto) de 0.9 días, éste cuenta con el más largo de 79 días. Diverge muchísimo menos, ni siquiera llega a 0.01 e/dp.
-### Visualización de órbitas
+It occurred to us to measure the divergence of Iapetus, since unlike Mimas, which has the shortest (and narrowest) orbital period of 0.9 days, this one has the longest of 79 days. It diverges much less, it does not even reach  0.01 e/dp.
+### Orbits visualization
 
 ![R1](https://user-images.githubusercontent.com/28678081/105872492-1a07a400-5fc0-11eb-872f-e9481ec02e9f.png)       
 
 ![R3](https://user-images.githubusercontent.com/28678081/105876213-5d641180-5fc4-11eb-8ba0-4b098d81f379.png)           
-En ésta imagen se observa que las órbitas de las Lunas de Saturno no están todas en el mismo plano.
+In this image it is observed that the orbits of the Moons of saturn are not all in the same plane.
 
 ![Captura de pantalla (354)](https://user-images.githubusercontent.com/60940649/106086709-51717000-60e8-11eb-97e4-0212b73b5bfe.png)
 
-## Conclusiones
-Cumplimos satisfactoriamente los objetivos.     
+## Conclusions
+We satisfactorily met the objectives.     
 
-Diseñamos una métrica para evaluar nuestro modelo, la cual consistió en comparar sus predicciones con mediciones reales. Y aunque los resultados de convergencia del modelo fueron mezclados, nos dimos cuenta de la posibilidad de que en el modelado de un sistema algunos cuerpos converjan y otros no. Hicimos muchos más experimentos con dt's más pequeñas (ej.: 0.25) pero no observamos mejora alguna. 
-> #### Hipótesis divergencia de Mimas
-> Creemos que es necesario un dt muchísimo más pequeño para converger con la solución de órbitas mucho más angostas como la de Mimas. El 'movimiento' de cada partícula en el modelo de un dt a otro es recto, la pequeñez del dt hace que el movimiento parezca curvo. La idea es que la órbita de Mimas es tan pequeña que el dt ya no parece ser tan pequeño para ella, entonces la órbita modelada empieza a parecerse más a un polígono que a una curva. Cada dt la partícula avanza demasiado y para el siguiente dt tiene que corregir mucho la trayectoria dejando un 'pico' fuera de la órbita real, con las iteraciones los picos se van acumulando y la particula se va quedando atrás porque está recorriendo más camino (pasando por los picos). Sin embargo por el momento no tenemos suficientes pruebas para afirmarlo. Naturalmente surge la pregunta de cómo modelar un sistema cuyos cuerpos necesitan dt's muy diferentes para converger.    
+We designed a metric to evaluate our model, which consisted of comparing its predictions with real measurements. And although the convergence results of the model were mixed, we realized the possibility that in the modeling of a system some bodies converge and others do not. We did many more experiments with smaller dt's (eg 0.25) but we did not see any improvement. 
+> #### Mimas divergence hypothesis
+> We believe that a much smaller dt is necessary to converge with the solution of much narrower orbits like Mimas. The 'motion' of each particle in the model from one dt to another is straight, the smallness of dt makes the motion appear curved. The idea is that Mimas's orbit is so small that the dt no longer apperars to be that small to it, so the modeled orbit starts to look more like a polygon than a curve. Each dt the particle advances too much and for the next dt it has to correct the trajectory a lot, leaving a 'peak' outside the real orbit, with the iterations the peaks accumulate and the particle is lagging behind because it is traveling further (passing by the peaks). However, at the moment we do not have enough evidence to affirm it. The question of how to model a system whose bodies need very different dt's to converge naturally arises.    
 
-Logramos visualizar consistentemente las órbitas de las lunas de Saturno.
+We were able to consistently visualize the orbits of Saturn's moons.
 
-Encontramos el dt óptimo al menos para Iapetus, partiendo del dt=1 propuesto en el trabajo en que éste se basó. 
+We found the optimal dt at least for Iapetus, starting from the dt = 1 proposed in the work on which this one was based.
 
-Redujimos el número de puntos a graficar en el plot, haciéndolo mucho más eficiente.
+We reduced the number of points to plot on the plot, making it much more efficient.
 
-Pudimos experimentar cómo rápidamente aumentan los recursos para ejecutar el código y visualizar el plot en medida en que aumentamos el número de partículas y el tiempo a modelar, por eso la importancia de elegir el dt óptimo para reducir las operaciones en órdenes de magnitud.     
+We were able to experience how quickly the resources to execute the code and visualize the plot increase as we increase the number of particles and the time to model, hence the importance of choosing the optimal dt to reduce operations by orders of magnitude.     
 
-Necesitamos seguir haciendo experimentos.
-## Bibliografía
+We need to keep doing experiments.
+## Bibliography
 - Victor de la Luz, 2021 n-body     
 https://github.com/itztli/n-body
 - JPL. 2020. JPL Solar System Dynamics HORIZONS Web-Interface CA, USA. Dataset accessed    
