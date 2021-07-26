@@ -6,7 +6,7 @@ Rafael Pérez - <tinoco21.30@gmail.com>
 Elena Bedolla - <maria.elena.bedolla.zamudio@gmail.com>      
 Javier Navarro - <javojavojavojavo@gmail.com>
 ### Afiliation
-![LOGO-UNAM-ENES_copia](images\LOGO-COMPUESTO-UNAM-ENES_-_copia.png)                
+![LOGO-UNAM-ENES_copia](images/LOGO-COMPUESTO-UNAM-ENES_-_copia.png)                
 We are BS IT students at UNAM (Universidad Nacional Autómoma de México) specifically at the ENES (Escuela Nacional de Estudios Superiores) Morelia.      
 Degree name: Licenciatura en Tecnologías para la Información en Ciencias (IT in science)
 
@@ -134,19 +134,19 @@ To graph the divergence, we compare the calculations from our model against the 
 ### Example: Mimas and Saturn
 The following image shows the initial conditions (position and velocity) of Mimas with respect to Saturn. Saturn being the reference frame, is the origin (position 0,0,0) in space and has no initial velocities (0,0,0). More data queries can be done on NASA's Horizons [here](https://ssd.jpl.nasa.gov/horizons.cgi).                 
 
-![image](images\horizons_data.png)
+![image](images/horizons_data.png)
 
 ## Tests
 We start with the parameters proposed in the original work: _dt = 1_ and _lenTime_ of 1 month. 
 ### 1: 5 bodies, dt= 0.5 and 3 months of modeling (minutes in execution)
 The plot took approximately 4 hours. Later we did tests with larger dts to decrease the execution and graphing time. Note that we are plotting points, but they are so close together that they look like lines.           
-![r1_2](images\r1_2.jpg)
+![r1_2](images/r1_2.jpg)
 ### 2: With a few hours of modeling (+ minutes in execution), we realized that with dt = 1 it does converge  
 \*\*\*Now we included the 8 bodies and modeled less time. The tests where successful, but the execution time was increased.      
-![p1](images\p1.jpg)
+![p1](images/p1.jpg)
 ### To try to optimize a bit and make the graph less heavy, we decided to graph fewer points for each body.
 We graph 60 points for each body, that is, we save the positions of each particle every (1,296,000 ÷ 60) iterations and then we graph them, with 1,296,000 being the total iterations in 30 days of modeling and dt = 2.       
-![Captura de pantalla (355)](images\captura_de_pantalla_355.png)
+![Captura de pantalla (355)](images/captura_de_pantalla_355.png)
 
 ## Results
 After several more tests, we found that dt = 2 gave us the fastest results without sacrificing convergence. 8 bodies are included in the modeled system: Saturn, Mimas, Enceladus, Tethys, Dione, Rhea, Titan and Iapetus. The modeled time interval is 30 days: December 24, 2020 to January 23, 2021. The total execution time was approximately 10 minutes.
@@ -161,20 +161,20 @@ The error (divergence) is calculated with the Euclidean distance between real me
 
 
 #### Mimas
-![Error_conjunto_mimas](images\Error_conjunto_mimas.png)        
+![Error_conjunto_mimas](images/Error_conjunto_mimas.png)        
 It turns out that Mimas does not converge, wich was very strange to us because the graph shows that Mimas deviates too much, and our dotted plots do not show such extreme disturbances (Of 100%!). After several tests we saw that Mimas was lagging in each iteration, as if it were moving in slow motion on the correct path. That is why it went unnoticed in the testing stage, the error was hidden.  
 
 #### Iapetus
-![Error_conjunto_Iapetus](images\Error_conjunto_Iapetus.png)         
+![Error_conjunto_Iapetus](images/Error_conjunto_Iapetus.png)         
 It occurred to us to measure the divergence of Iapetus, since unlike Mimas, which has the shortest (and narrowest) orbital period of 0.9 days, this one has the longest of 79 days. It diverges much less, it does not even reach  0.01 e/dp.
 ### Orbits visualization
 
-![R1](images\R1.png)       
+![R1](images/R1.png)       
 
-![R3](images\R3.png)           
+![R3](images/R3.png)           
 In this image it is observed that the orbits of the Moons of saturn are not all in the same plane.
 
-![Captura de pantalla (354)](images\captura_de_pantalla_354.png)
+![Captura de pantalla (354)](images/captura_de_pantalla_354.png)
 
 ## Conclusions
 We satisfactorily met the objectives.     
