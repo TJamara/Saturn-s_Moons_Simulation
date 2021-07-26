@@ -142,7 +142,7 @@ We start with the parameters proposed in the original work: _dt = 1_ and _lenTim
 The plot took approximately 4 hours. Later we did tests with larger dts to decrease the execution and graphing time. Note that we are plotting points, but they are so close together that they look like lines.           
 ![r1_2](images/r1_2.jpg)
 ### 2: With a few hours of modeling (+ minutes in execution), we realized that with dt = 1 it does converge  
-\*\*\*Now we included the 8 bodies and modeled less time. The tests where successful, but the execution time was increased.      
+Now we included the 8 bodies and modeled less time. The tests where successful, but the execution time was increased.      
 ![p1](images/p1.jpg)
 ### To try to optimize a bit and make the graph less heavy, we decided to graph fewer points for each body.
 We graph 60 points for each body, that is, we save the positions of each particle every (1,296,000 ÷ 60) iterations and then we graph them, with 1,296,000 being the total iterations in 30 days of modeling and dt = 2.       
