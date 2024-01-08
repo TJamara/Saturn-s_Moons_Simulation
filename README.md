@@ -60,10 +60,10 @@ We know that $a = \frac{dv}{dt}$, so:
 $$\frac{dv}{dt} = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i$$       
 
 We integrate and are left with velocity:      
-$$v = G  \int \sum_{i} (\frac{m_i}{r_{i}^3})u_i \,dt$$        
+$$v = G  \int \sum_{i} (\frac{m_i}{r_{i}^3})u_i \ dt$$        
 
 As nothing depends on time, then:    
-$$v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i \int \,dt$$          
+$$v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i \int \ dt$$          
 $$v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i (t1-t0)$$          
 $$v = G  ( \sum_{i} (\frac{m_i}{r_{i}^3})u_i) dt$$        
 So then we know what's the velocity.      
