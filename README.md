@@ -44,41 +44,40 @@ The formulas are written in black so it's advised to use a white background.
 $$F = ma$$   
 
 #### Universal Gravitational Law
-<img src="https://render.githubusercontent.com/render/math?math=F = \frac{GMm}{r^2}">    
+$$F = \frac{GMm}{r^2}$$ 
 
 
-The difference is that since we work in a 3-dimensional vector field, we have to add the vector u that will indicate the direction of the forces and F is now a vector as well. Additionally we divide by <img src="https://render.githubusercontent.com/render/math?math=r^3"> instead of <img src="https://render.githubusercontent.com/render/math?math=r^2">.       
+The difference is that since we work in a 3-dimensional vector field, we have to add the vector u that will indicate the direction of the forces and F is now a vector as well. Additionally we divide by $r^2$.       
 #### N-bodies
 The law of universal gravitation describes the force between 2 bodies, to generalize it to n-bodies, we can add all the forces of a body with the others and do so for each body.         
   
-The sum is:
-<img src="https://render.githubusercontent.com/render/math?math=F = GM  \sum_{i} (\frac{m_i}{r_{i}^3})u_i ">     
+The sum is: $F = GM  \sum_{i} (\frac{m_i}{r_{i}^3})u_i$    
  
-We substitute <img src="https://render.githubusercontent.com/render/math?math=F = Ma">:     
-<img src="https://render.githubusercontent.com/render/math?math=a = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i">      
+We substitute $F = Ma$     
+$$a = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i$$   
 
-We know that <img src="https://render.githubusercontent.com/render/math?math=a = \frac{dv}{dt}">, so:     
-<img src="https://render.githubusercontent.com/render/math?math=\frac{dv}{dt} = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i">         
+We know that $a = \frac{dv}{dt}$, so:     
+$$\frac{dv}{dt} = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i$$       
 
 We integrate and are left with velocity:      
-<img src="https://render.githubusercontent.com/render/math?math=v = G  \int \sum_{i} (\frac{m_i}{r_{i}^3})u_i \,dt">         
+$$v = G  \int \sum_{i} (\frac{m_i}{r_{i}^3})u_i \,dt$$        
 
 As nothing depends on time, then:    
-<img src="https://render.githubusercontent.com/render/math?math=v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i \int \,dt">           
-<img src="https://render.githubusercontent.com/render/math?math=v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i (t1-t0)">           
-<img src="https://render.githubusercontent.com/render/math?math=v = G  ( \sum_{i} (\frac{m_i}{r_{i}^3})u_i) dt">        
+$$v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i \int \,dt$$          
+$$v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i (t1-t0)$$          
+$$v = G  ( \sum_{i} (\frac{m_i}{r_{i}^3})u_i) dt$$        
 So then we know what's the velocity.      
 
-We also know that <img src="https://render.githubusercontent.com/render/math?math=v = \frac{dx}{dt}">, sustituimos:      
-<img src="https://render.githubusercontent.com/render/math?math=\frac{dx}{dt} = v">           
+We also know that $v = \frac{dx}{dt}$, sustituimos:      
+$$\frac{dx}{dt} = v$$           
 
 We integrate:     
-<img src="https://render.githubusercontent.com/render/math?math=x = \int v \,dt">       
+$$x = \int v \,dt"$$       
 
 Now we take v out of the integral although it does depend on time, what we assume is that the time jumps are so small that it has an insignificant effect for the purposes of the model, then:        
-<img src="https://render.githubusercontent.com/render/math?math=x = v \int \,dt">      
-<img src="https://render.githubusercontent.com/render/math?math=x = v  (t1-t0)">     
-<img src="https://render.githubusercontent.com/render/math?math=x = v dt">        
+$$x = v \int \,dt$$      
+$$x = v  (t1-t0)$$     
+$$x = v dt$$        
 
 The calculated x is the change in position of a particle after a certain dt. Then, to calculate the new position of the particle, you just have to add the calculated change to the old position.
 
