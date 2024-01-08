@@ -38,48 +38,46 @@ Saturn has 82 confirmed moons with diameter ranging  from a few meters to larger
 
 
  
-### Newton's Laws and position integration 
-The formulas are written in black so it's advised to use a white background.
-#### Newton's Second Law   
-$$F = ma$$   
+### Newton's Laws and Position Integration
+
+#### Newton's Second Law
+$$F = ma$$
 
 #### Universal Gravitational Law
-$$F = \frac{GMm}{r^2}$$ 
+$$F = \frac{GMm}{r^2}$$
 
+In the 3-dimensional vector field, the gravitational force ($F$) becomes a vector, and a unit vector ($\mathbf{u}$) is introduced to indicate the direction of the forces. Additionally, we divide by $r^2$.
 
-The difference is that since we work in a 3-dimensional vector field, we have to add the vector u that will indicate the direction of the forces and F is now a vector as well. Additionally we divide by $r^2$.       
 #### N-bodies
-The law of universal gravitation describes the force between 2 bodies, to generalize it to n-bodies, we can add all the forces of a body with the others and do so for each body.         
-  
-The sum is: $F = GM  \sum_{i} (\frac{m_i}{r_{i}^3})u_i$    
- 
-We substitute $F = Ma$     
-$$a = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i$$   
+The law of universal gravitation describes the force between two bodies. To generalize it to n-bodies, we can sum up the forces acting on each body.
 
-We know that $a = \frac{dv}{dt}$, so:     
-$$\frac{dv}{dt} = G  \sum_{i} (\frac{m_i}{r_{i}^3})u_i$$       
+The sum is given by:
+$$F = GM \sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i$$
 
-We integrate and are left with velocity:      
-$$v = G  \int \sum_{i} (\frac{m_i}{r_{i}^3})u_i \ dt$$        
+Substituting $F = ma$:
+$$a = G \sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i$$
 
-As nothing depends on time, then:    
-$$v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i \int \ dt$$          
-$$v = G   \sum_{i} (\frac{m_i}{r_{i}^3})u_i (t1-t0)$$          
-$$v = G  ( \sum_{i} (\frac{m_i}{r_{i}^3})u_i) dt$$        
-So then we know what's the velocity.      
+Since $a = \frac{dv}{dt}$:
+$$\frac{dv}{dt} = G \sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i$$
 
-We also know that $v = \frac{dx}{dt}$, sustituimos:      
-$$\frac{dx}{dt} = v$$           
+Integrating with respect to time:
+$$v = G \int \sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i \,dt$$
 
-We integrate:     
-$$x = \int v \ dt$$       
+As nothing depends on time, we simplify to:
+$$v = G \sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i(t_1 - t_0)$$
 
-Now we take v out of the integral although it does depend on time, what we assume is that the time jumps are so small that it has an insignificant effect for the purposes of the model, then:        
-$$x = v \int \ dt$$      
-$$x = v  (t1-t0)$$     
-$$x = v dt$$        
+Expressing velocity in terms of displacement:
+$$v = G \left(\sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i\right)\Delta t$$
 
-The calculated x is the change in position of a particle after a certain dt. Then, to calculate the new position of the particle, you just have to add the calculated change to the old position.
+Knowing $v = \frac{dx}{dt}$, we integrate:
+$$x = \int v \,dt$$
+
+Assuming small time intervals ($\Delta t$):
+$$x = v \int \,dt$$
+$$x = v\Delta t$$
+
+The calculated $x$ represents the change in position after a certain $\Delta t$. To find the new position, add this change to the old position.
+
 
 
 ## Justification
