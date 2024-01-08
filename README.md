@@ -41,7 +41,7 @@ Saturn has 82 confirmed moons with diameter ranging  from a few meters to larger
 ### Newton's Laws and position integration 
 The formulas are written in black so it's advised to use a white background.
 #### Newton's Second Law   
-<img src="https://render.githubusercontent.com/render/math?math=F = ma">     
+$$F = ma$$   
 
 #### Universal Gravitational Law
 <img src="https://render.githubusercontent.com/render/math?math=F = \frac{GMm}{r^2}">    
