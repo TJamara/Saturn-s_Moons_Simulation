@@ -61,7 +61,7 @@ Since $a = \frac{dv}{dt}$:
 $$\frac{dv}{dt} = G \sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i$$
 
 Integrating with respect to time:
-$$v = G \int \sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i \,dt$$
+$$v = G \int \sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i \ dt$$
 
 As nothing depends on time, we simplify to:
 $$v = G \sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i(t_1 - t_0)$$
@@ -70,13 +70,13 @@ Expressing velocity in terms of displacement:
 $$v = G \left(\sum_{i} \left(\frac{m_i}{r_{i}^3}\right)\mathbf{u}_i\right)\Delta t$$
 
 Knowing $v = \frac{dx}{dt}$, we integrate:
-$$x = \int v \,dt$$
+$$x = \int v \ dt$$
 
 Assuming small time intervals ($\Delta t$):
-$$x = v \int \,dt$$
+$$x = v \int \ dt$$
 $$x = v\Delta t$$
 
-The calculated $x$ represents the change in position after a certain $\Delta t$. To find the new position, add this change to the old position.
+The calculated $x$ represents the change in position after a certain $\Delta t$. To find the new position, we add this change to the old position.
 
 
 
