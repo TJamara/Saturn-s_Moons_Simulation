@@ -72,10 +72,10 @@ We also know that $v = \frac{dx}{dt}$, sustituimos:
 $$\frac{dx}{dt} = v$$           
 
 We integrate:     
-$$x = \int v \,dt"$$       
+$$x = \int v \ dt$$       
 
 Now we take v out of the integral although it does depend on time, what we assume is that the time jumps are so small that it has an insignificant effect for the purposes of the model, then:        
-$$x = v \int \,dt$$      
+$$x = v \int \ dt$$      
 $$x = v  (t1-t0)$$     
 $$x = v dt$$        
 
